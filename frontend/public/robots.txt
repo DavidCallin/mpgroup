@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mpgroup.africa/sitemap.xml
+
+# Disallow admin pages (if any in the future)
+Disallow: /admin/
