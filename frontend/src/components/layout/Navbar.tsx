@@ -95,8 +95,8 @@ export function Navbar() {
             : 'bg-transparent py-5'
       )}
     >
-      <div className="max-w-[1700px] mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center group mt-6 lg:mt-0">
+      <div className="max-w-[1700px] mx-auto flex items-center justify-between ">
+        <Link to="/" className="flex items-center group mt-6 lg:mt-0 mr-6 xl:mr-12">
           <div className="transition-all duration-300">
             <img
               src={navbarScrolled ? logoDark : logoLight}
