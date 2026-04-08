@@ -44,7 +44,6 @@ export default function Founder() {
 
             {/* Content Section */}
             <section className="py-24 bg-white relative">
-                <div className="absolute top-0 right-0 w-1/3 h-full bg-[#f8f9fb] -z-0" />
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-stretch">
                         {/* Image Column */}
@@ -82,16 +81,19 @@ export default function Founder() {
                                     <div className="flex items-center gap-4">
                                         <span className="text-secondary font-bold text-base uppercase tracking-[0.2em]">Biographie</span>
                                     </div>
-                                    <p className="text-xl sm:text-2xl text-primary font-bold leading-relaxed italic">
+                                    <p className="text-xl text-justify sm:text-2xl text-primary font-bold leading-relaxed italic">
                                         {t('founder.bio.description')}
                                     </p>
-                                    <p className="text-lg text-gray-700 leading-relaxed font-light">
+                                   <p className="text-lg text-justify text-gray-700 leading-relaxed font-light">
+                                        {t('founder.bio.intro')}
+                                    </p>
+                                    <p className="text-lg text-justify text-gray-700 leading-relaxed font-light">
                                         {t('founder.bio.achievements')}
                                     </p>
-                                    <p className="text-lg text-gray-700 leading-relaxed font-light">
+                                    <p className="text-lg text-justify text-gray-700 leading-relaxed font-light">
                                         {t('founder.bio.business')}
                                     </p>
-                                    <p className="text-lg text-gray-700 leading-relaxed font-light">
+                                    <p className="text-lg text-justify text-gray-700 leading-relaxed font-light">
                                         {t('founder.bio.experience')}
                                     </p>
                                 </div>

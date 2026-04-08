@@ -13,7 +13,7 @@ class ContactMessage extends Mailable
     use Queueable, SerializesModels;
 
     public $contactData;
-
+    
     /**
      * Create a new message instance.
      */

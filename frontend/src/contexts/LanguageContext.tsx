@@ -137,10 +137,11 @@ const translations = {
 
     // Founder Page
     'founder.title': 'La fondatrice de MP Group',
-    'founder.bio.description': 'Marveen Promise AÏNADOU est née le 10 avril 2006 à Cotonou. Elle est activiste écologique et rédactrice web SEO spécialisée dans les thématiques environnementales chez Mondoblog RFI, où elle valorise des initiatives durables, des récits engagés et des pratiques responsables.',
-    'founder.bio.achievements': 'Elle a été oratrice et ambassadrice RFI Cotonou 2021. Formée en Bureautique internet et robotique à Epitech Bénin l\'école d\'expertise informatique en 2023, elle maîtrise le codage HTML 5 et dispose de compétences en marketing digital.',
+    'founder.bio.description': 'Marveen Promise Edmaine AÏNADOU.',
+    'founder.bio.intro': 'Passionnée de mode et d’informatique, elle a  remporté la première place d’un challenge Impact à Epitech Bénin. En 2021, elle fut ambassadrice RFI en art oratoire . Étudiante en troisième année des sciences de l\'éducation et la formation à l\'université d\'Abomey Calavi, elle a été activiste et rédactrice SEO chez Mondoblog RFI Cotonou 2021.',
+    'founder.bio.achievements': 'Formée en Bureautique internet et robotique à Epitech Bénin l\'école d\'expertise informatique en 2023, elle maîtrise le codage HTML 5 et dispose de compétences en marketing digital et en gestion de projet.',
     'founder.bio.business': 'Elle est CEO de MP Brioche, une pâtisserie qui propose des crêpes et pancakes adaptés à tout type de personnes.',
-    'founder.bio.experience': 'Après avoir organisé des événements pendant 5 ans bénévolement dans une communauté sous la Mairie des jeunes, elle a décidé de se lancer dans la coordination d\'événements d\'envergure.',
+    'founder.bio.experience': 'Après avoir organisé des événements pendant 5 ans bénévolement dans une communauté sous la Mairie des jeunes, elle a décidé de se lancer dans la coordination d\'événements d\'envergure depuis 3 ans.',
     'founder.bio.approach.title': 'La fondatrice du groupe développe une approche fondée sur :',
     'founder.bio.approach.item1': 'la compréhension des environnements institutionnels',
     'founder.bio.approach.item2': 'la capacité à connecter les bons acteurs',
@@ -435,10 +436,11 @@ const translations = {
 
     // Founder Page
     'founder.title': 'The founder of MP Group',
-    'founder.bio.description': 'Marveen Promise AÏNADOU was born on April 10, 2006 in Cotonou. She is an ecological activist and SEO web writer specialized in environmental themes at Mondoblog RFI, where she promotes sustainable initiatives, engaged stories and responsible practices.',
-    'founder.bio.achievements': 'She was a speaker and RFI Cotonou 2021 ambassador. Trained in Office automation, internet and robotics at Epitech Benin, the computer expertise school in 2023, she masters HTML 5 coding and has digital marketing skills.',
+    'founder.bio.description': 'Marveen Promise Edmaine AÏNADOU.',
+    'founder.bio.intro': 'Passionate about fashion and IT, she won first place in an Impact Challenge at Epitech Benin. In 2021, she was an RFI ambassador in public speaking. A third-year student of education and training sciences at the University of Abomey-Calavi, she was an activist and SEO writer for Mondoblog RFI Cotonou in 2021.',
+    'founder.bio.achievements': 'Trained in Office Automation, Internet and Robotics at Epitech Benin, the computer expertise school in 2023, she masters HTML 5 coding and has skills in digital marketing and project management.',
     'founder.bio.business': 'She is CEO of MP Brioche, a pastry shop that offers crepes and pancakes suitable for all types of people.',
-    'founder.bio.experience': 'After organizing events for 5 years voluntarily in a community under the Youth City Hall, she decided to launch into large-scale event coordination.',
+    'founder.bio.experience': 'After organizing events for 5 years on a voluntary basis in a community under the Youth Council, she decided to embark on coordinating large-scale events 3 years ago.',
     'founder.bio.approach.title': 'The founder develops an approach based on:',
     'founder.bio.approach.item1': 'understanding of institutional environments',
     'founder.bio.approach.item2': 'the ability to connect the right actors',
