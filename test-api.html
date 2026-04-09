@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test API Backend</title>
+</head>
+<body>
+    <h1>Test de l'API Backend</h1>
+    <button onclick="testAPI()">Tester /api/test</button>
+    <button onclick="testContact()">Tester /api/contact</button>
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/test');
+                const data = await response.json();
+                document.getElementById('result').innerHTML = 
+                    '<h3>Test /api/test - SUCCESS</h3><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    '<h3>Test /api/test - ERROR</h3><pre>' + error.message + '</pre>';
+            }
+        }
+
+        async function testContact() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fullname: 'Test User',
+                        organization: 'Test Org',
+                        email: 'test@example.com',
+                        phone: '+229 01 23 45 67',
+                        message: 'Test message from HTML'
+                    })
+                });
+                const data = await response.json();
+                document.getElementById('result').innerHTML = 
+                    '<h3>Test /api/contact - SUCCESS</h3><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    '<h3>Test /api/contact - ERROR</h3><pre>' + error.message + '</pre>';
+            }
+        }
+    </script>
+</body>
+</html>
