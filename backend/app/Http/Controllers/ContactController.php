@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use App\Mail\ContactMessage;
+use App\Jobs\SendContactEmail;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Mail\ContactFormMail;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -92,19 +92,16 @@ class ContactController extends Controller
 
         // Créer le contact dans la base de données
         $contact = Contact::create([
-            'fullname' => $validated['nom'] . ' ' . $validated['prenom'],
-            'organization' => $validated['entreprise'],
-            'email' => $validated['email'],
-            'phone' => $validated['telephone'],
-            'message' => "Sujet: {$validated['sujet']}\n\n{$validated['message']}",
+            'nom'        => $validated['nom'],
+            'prenom'     => $validated['prenom'],
+            'email'      => $validated['email'],
+            'telephone'  => $validated['telephone'],
+            'entreprise' => $validated['entreprise'] ?? null,
+            'sujet'      => $validated['sujet'],
+            'message'    => $validated['message'],
         ]);
 
-        // Envoyer l'email directement avec la nouvelle classe Mailable
-        try {
-            Mail::to('mpgroupcompany1@gmail.com')->send(new \App\Mail\ContactMessage($validated));
-        } catch (\Exception $e) {
-            \Log::error('Erreur envoi email contact: ' . $e->getMessage());
-        }
+        Mail::to('mpgroupcompany1@gmail.com')->send(new ContactFormMail($validated));
 
         return response()->json([
             'message' => 'Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.',

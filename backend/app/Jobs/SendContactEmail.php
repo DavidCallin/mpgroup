@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 
-class SendContactEmail implements ShouldQueue
+class SendContactEmail
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

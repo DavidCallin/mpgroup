@@ -197,12 +197,16 @@ class ApiService {
 
   async logout(): Promise<void> {
     if (this.token) {
-      await this.request('/auth/logout', {
-        method: 'POST',
-      })
+      try {
+        await this.request('/auth/logout', { method: 'POST' })
+      } catch {
+        // Ignorer les erreurs réseau/auth lors du logout
+      }
     }
-    
-    // Nettoyer le stockage local
+    this.clearAuth()
+  }
+
+  clearAuth(): void {
     this.token = null
     localStorage.removeItem('auth_token')
     localStorage.removeItem('user')
