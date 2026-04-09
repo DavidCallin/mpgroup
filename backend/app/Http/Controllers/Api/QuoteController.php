@@ -41,7 +41,7 @@ class QuoteController extends Controller
     {
         $validated = $request->validate([
             'nom' => 'sometimes|string|max:255',
-            'prenom' => 'sometimes|string|max:255',
+            'prenom' => 'nullable|string|max:255',
             'email' => 'sometimes|email|max:255',
             'telephone' => 'sometimes|string|max:20',
             'entreprise' => 'nullable|string|max:255',
