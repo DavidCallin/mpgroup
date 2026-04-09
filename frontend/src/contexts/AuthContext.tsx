@@ -29,9 +29,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setUser(null)
       }
     } catch (error) {
-      console.error('Auth check failed:', error)
-      // Token invalide, nettoyer le localStorage
-      await logout()
+      // Token invalide, nettoyer sans appeler l'API
+      apiService.clearAuth()
+      setUser(null)
     } finally {
       setIsLoading(false)
     }
