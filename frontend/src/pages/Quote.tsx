@@ -490,6 +490,7 @@ export default function Quote() {
                   name="budget"
                   label={t('quote.form.budget')}
                   placeholder={t('quote.form.budget.placeholder')}
+                  required
                   value={formData.budget || ''}
                   onChange={handleInputChange}
                 />

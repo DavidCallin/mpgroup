@@ -51,7 +51,7 @@ class QuoteController extends Controller
             'nombre_participants' => 'sometimes|integer|min:1',
             'description' => 'sometimes|string',
             'services_souhaites' => 'nullable|array',
-            'budget_estime' => 'nullable|numeric|min:0',
+            'budget_estime' => 'sometimes|numeric|min:0',
             'statut' => ['sometimes', Rule::in(['nouveau', 'en_cours', 'traite', 'refuse'])]
         ]);
 
