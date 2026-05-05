@@ -33,10 +33,10 @@ export function Footer() {
             {t('footer.description')}
           </p>
           <div className="flex gap-3 sm:gap-4">
-            <a href="https://www.linkedin.com/in/marveen-promise-ainadou/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+            <a href="https://www.linkedin.com/company/mp-group-officiel/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
               <Linkedin size={16} className="sm:w-5 sm:h-5" />
             </a>
-            <a href="https://www.facebook.com/marveen.ainadou" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
+            <a href="https://www.facebook.com/MPGROUPOFFICIEL" target="_blank" rel="noopener noreferrer" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-secondary hover:text-primary transition-all">
               <Facebook size={16} className="sm:w-5 sm:h-5" />
             </a>
           </div>

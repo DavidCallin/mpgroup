@@ -26,7 +26,7 @@ class StoreQuoteRequest extends FormRequest
             'nombre_participants' => 'required|integer|min:1',
             'description' => 'required|string|min:10',
             'services_souhaites' => 'nullable|array',
-            'budget_estime' => 'nullable|numeric|min:0',
+            'budget_estime' => 'required|numeric|min:100000',
             'discovery' => 'nullable|string|max:255'
         ];
     }
@@ -47,7 +47,8 @@ class StoreQuoteRequest extends FormRequest
             'nombre_participants.min' => 'Le nombre de participants doit être au moins 1.',
             'description.required' => 'La description est obligatoire.',
             'description.min' => 'La description doit contenir au moins 10 caractères.',
-            'budget_estime.min' => 'Le budget estimé doit être positif.'
+            'budget_estime.min' => 'Veuillez indiquez une estimation concrète.',
+            'budget_estime.required' => 'Le budget estimé est obligatoire.'
         ];
     }
 }

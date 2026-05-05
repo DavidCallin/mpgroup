@@ -21,7 +21,22 @@ class QuoteController extends Controller
 
     public function store(StoreQuoteRequest $request): JsonResponse
     {
-        $quote = Quote::create($request->validated());
+        $quote = Quote::create($request->validated(
+            [
+            'nom' => 'sometimes|string|max:255',
+            'prenom' => 'nullable|string|max:255',
+            'email' => 'sometimes|email|max:255',
+            'telephone' => 'sometimes|string|max:20',
+            'entreprise' => 'nullable|string|max:255',
+            'type_evenement' => 'sometimes|string|max:255',
+            'date_evenement' => 'sometimes|date',
+            'lieu_evenement' => 'sometimes|string|max:255',
+            'nombre_participants' => 'sometimes|integer|min:1',
+            'description' => 'sometimes|string',
+            'services_souhaites' => 'nullable|array',
+            'budget_estime' => 'sometimes|numeric|min:0'
+            ]
+        ));
 
         try {
             Mail::to('mpgroupcompany1@gmail.com')->send(new QuoteMessage($request->validated()));

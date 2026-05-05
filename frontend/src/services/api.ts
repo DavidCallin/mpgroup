@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
 
 export interface ContactFormData {
   nom: string
@@ -16,7 +16,7 @@ export interface QuoteFormData {
   email: string
   telephone: string
   entreprise?: string
-  type_evenement: string
+  type_evenement: stringsole
   date_evenement: string
   lieu_evenement: string
   nombre_participants: number
