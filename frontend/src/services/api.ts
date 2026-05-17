@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api'
 
 export interface ContactFormData {
   nom: string
