@@ -6,6 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { useState } from 'react'
 import { SEO } from '@/components/SEO'
 import { SchemaOrg } from '@/components/SchemaOrg'
+import AvisWidget from '@/components/ui/AvisWidget'
 import heroImage from '@/assets/pexels-am83-14636315.webp'
 import promiseImage from '@/assets/pexels-bertellifotografia-16120243.webp'
 
@@ -238,6 +239,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Avis Section */}
+      <section className="py-8 px-4 sm:px-6 bg-primary text-white">
+        <AvisWidget />
+      </section>
+
       {/* Final CTA Section */}
       <section className="py-20 px-4 sm:px-6 bg-secondary relative overflow-hidden group">
         <div className="absolute inset-0 bg-primary translate-y-full transition-transform duration-700 ease-[0.22, 1, 0.36, 1] group-hover:translate-y-0" />
@@ -254,9 +260,11 @@ export default function Home() {
             <p className="text-lg sm:text-xl mb-12 leading-relaxed opacity-90">
               {t('home.cta.description')}
             </p>
+            
             <Button asChild className="bg-primary text-white hover:bg-white hover:text-primary font-bold px-10 py-8 text-xl rounded-none transition-all duration-500 group-hover:bg-secondary group-hover:text-primary">
               <Link to="/devis">{t('home.cta.button')}</Link>
             </Button>
+            
           </motion.div>
         </div>
       </section>

@@ -6,6 +6,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Api\QuoteController;
+use App\Http\Controllers\Api\AvisController;
+
+
 
 // Route de test API
 Route::get('/test', [TestController::class, 'test']);
@@ -87,4 +90,19 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::put('/news/{id}', [App\Http\Controllers\ActualitesController::class,'update']);
     Route::delete('/news/{id}', [App\Http\Controllers\ActualitesController::class,'destroy']);
     Route::post('/news/upload', [App\Http\Controllers\ActualitesController::class, 'upload']);
+});
+
+
+// Public
+Route::post('/avis', [AvisController::class, 'store']);
+Route::get('/avis', [AvisController::class, 'index']);
+
+// Admin (protégé par le middleware existant, ex: auth:sanctum + AdminMiddleware)
+Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/avis', [AvisController::class, 'adminIndex']);
+    Route::patch('/avis/{avi}/approve', [AvisController::class, 'approve']);
+    Route::patch('/avis/{avi}/reject', [AvisController::class, 'reject']);
+    Route::delete('/avis/{avi}', [AvisController::class, 'destroy']);
+    Route::get('/settings/avis-auto-publish', [AvisController::class, 'getAutoPublish']);
+    Route::put('/settings/avis-auto-publish', [AvisController::class, 'setAutoPublish']);
 });

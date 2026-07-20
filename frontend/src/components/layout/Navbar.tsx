@@ -51,6 +51,7 @@ export function Navbar() {
     { name: t('nav.founder'), to: '/founder' },
     { name: t('nav.news'), to: '/news' },
     { name: t('nav.contact'), to: '/contact' },
+    { name: t('nav.avis'), to: '/avis' },
   ]
 
   useEffect(() => {

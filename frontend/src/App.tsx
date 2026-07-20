@@ -11,6 +11,7 @@ import News from './pages/News'
 import ArticleDetail from './pages/ArticleDetail'
 import Contact from './pages/Contact'
 import Quote from './pages/Quote'
+import Avis from './pages/Avis'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsOfService from './pages/TermsOfService'
 import NotFound from './pages/NotFound'
@@ -31,6 +32,7 @@ import { AuthProvider } from './contexts/AuthContext'
 import { ArticlesProvider } from './contexts/ArticlesContext'
 import { ProtectedRoute, PublicOnlyRoute } from './components/auth/ProtectedRoute'
 import { CookieConsent } from './components/ui/CookieConsent'
+import ManageAvis from './pages/admin/ManageAvis'
 
 // Scroll to top component
 function ScrollToTop() {
@@ -336,6 +338,32 @@ const adminNewsEditRoute = createRoute({
   ),
 })
 
+// Avis route (publique)
+const avisRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/avis',
+  component: () => (
+    <>
+      <ScrollToTop />
+      <Avis />
+    </>
+  ),
+})
+
+// Avis Manage route (admin, protégée)
+const avisManagerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/avis',
+  component: () => (
+    <ProtectedRoute>
+      <AdminLayout>
+        <ScrollToTop />
+        <ManageAvis />
+      </AdminLayout>
+    </ProtectedRoute>
+  ),
+})
+
 // Create route tree
 const routeTree = rootRoute.addChildren([
   indexRoute,
@@ -348,6 +376,7 @@ const routeTree = rootRoute.addChildren([
   articleDetailRoute,
   contactRoute,
   quoteRoute,
+  avisRoute,
   privacyRoute,
   termsRoute,
   notFoundRoute,
@@ -361,6 +390,7 @@ const routeTree = rootRoute.addChildren([
   adminNewsRoute,
   adminNewsCreateRoute,
   adminNewsEditRoute,
+  avisManagerRoute,
 ])
 
 // Create router

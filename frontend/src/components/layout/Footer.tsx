@@ -52,6 +52,7 @@ export function Footer() {
             <li><Link to="/founder" className="text-sm text-white/60 hover:text-secondary transition-all hover:pl-2">{t('nav.founder')}</Link></li>
             <li><Link to="/news" className="text-sm text-white/60 hover:text-secondary transition-all hover:pl-2">{t('nav.news')}</Link></li>
             <li><Link to="/contact" className="text-sm text-white/60 hover:text-secondary transition-all hover:pl-2">{t('nav.contact')}</Link></li>
+            <li><Link to="/avis" className="text-sm text-white/60 hover:text-secondary transition-all hover:pl-2">{t('nav.avis')}</Link></li>
           </ul>
         </div>
 

@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'
 
 export interface ContactFormData {
   nom: string
@@ -16,7 +16,7 @@ export interface QuoteFormData {
   email: string
   telephone: string
   entreprise?: string
-  type_evenement: stringsole
+  type_evenement: string
   date_evenement: string
   lieu_evenement: string
   nombre_participants: number
@@ -125,6 +125,25 @@ export interface LoginResponse {
 export interface ApiResponse<T = any> {
   message: string
   contact?: T
+}
+
+export interface AvisData {
+  id: number;
+  nom_complet: string;
+  email?: string;
+  nom_evenement: string;
+  note: number;
+  commentaire: string;
+  statut: 'en_attente' | 'publie' | 'rejete';
+  created_at: string;
+}
+
+export interface NewAvisPayload {
+  nom_complet: string;
+  email?: string;
+  nom_evenement: string;
+  note: number;
+  commentaire: string;
 }
 
 class ApiService {
@@ -365,6 +384,54 @@ class ApiService {
       console.error('API request failed:', error)
       throw error
     }
+  }
+
+  // --- Avis clients ---
+  async submitAvis(data: NewAvisPayload): Promise<{ message: string; avis: AvisData }> {
+    return this.request<{ message: string; avis: AvisData }>('/avis', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+  }
+
+  async getAvis(): Promise<AvisData[]> {
+    return this.request<AvisData[]>('/avis')
+  }
+
+  // --- Admin ---
+  async getAdminAvis(statut?: string): Promise<AvisData[]> {
+    const query = statut ? `?statut=${statut}` : ''
+    return this.request<AvisData[]>(`/admin/avis${query}`)
+  }
+
+  async approveAvis(id: number): Promise<{ message: string; avis: AvisData }> {
+    return this.request<{ message: string; avis: AvisData }>(`/admin/avis/${id}/approve`, {
+      method: 'PATCH',
+    })
+  }
+
+  async rejectAvis(id: number): Promise<{ message: string; avis: AvisData }> {
+    return this.request<{ message: string; avis: AvisData }>(`/admin/avis/${id}/reject`, {
+      method: 'PATCH',
+    })
+  }
+
+  async deleteAvis(id: number): Promise<{ message: string }> {
+    return this.request<{ message: string }>(`/admin/avis/${id}`, {
+      method: 'DELETE',
+    })
+  }
+
+  async getAvisAutoPublish(): Promise<boolean> {
+    const res = await this.request<{ auto_publish: boolean }>('/admin/settings/avis-auto-publish')
+    return res.auto_publish
+  }
+
+  async setAvisAutoPublish(value: boolean): Promise<{ message: string; auto_publish: boolean }> {
+    return this.request<{ message: string; auto_publish: boolean }>('/admin/settings/avis-auto-publish', {
+      method: 'PUT',
+      body: JSON.stringify({ auto_publish: value }),
+    })
   }
 }
 
