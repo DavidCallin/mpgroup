@@ -148,6 +148,11 @@ export interface NewAvisPayload {
   commentaire: string;
 }
 
+export interface AvisStats {
+  moyenne: number
+  total: number
+}
+
 class ApiService {
   private token: string | null = null
 
@@ -434,6 +439,10 @@ class ApiService {
       method: 'PUT',
       body: JSON.stringify({ auto_publish: value }),
     })
+  }
+
+  async getAvisStats(): Promise<AvisStats> {
+    return this.request<AvisStats>('/avis/stats')
   }
 }
 

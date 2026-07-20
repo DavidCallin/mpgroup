@@ -3,6 +3,7 @@ import { Navbar } from './Navbar'
 import { Footer } from './Footer'
 import { ScrollToTopButton } from '@/components/ui/ScrollToTopButton'
 
+
 export function MainLayout() {
   const location = useLocation()
   const isArticleDetail = location.pathname.startsWith('/news/') && location.pathname !== '/news'

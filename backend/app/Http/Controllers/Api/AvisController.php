@@ -87,4 +87,18 @@ class AvisController extends Controller
         Setting::set('avis_auto_publish', $request->auto_publish ? 'true' : 'false');
         return response()->json(['message' => 'Paramètre mis à jour.', 'auto_publish' => $request->auto_publish]);
     }
+
+    // GET /api/avis/stats (public)
+    public function stats()
+    {
+        $avisPublies = Avis::where('statut', 'publie');
+
+        $moyenne = $avisPublies->avg('note');
+        $total = $avisPublies->count();
+
+        return response()->json([
+            'moyenne' => $moyenne ? round($moyenne, 1) : 0,
+            'total' => $total,
+        ]);
+    }
 }

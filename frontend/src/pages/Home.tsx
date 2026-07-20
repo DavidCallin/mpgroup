@@ -9,11 +9,19 @@ import { SchemaOrg } from '@/components/SchemaOrg'
 import AvisWidget from '@/components/ui/AvisWidget'
 import heroImage from '@/assets/pexels-am83-14636315.webp'
 import promiseImage from '@/assets/pexels-bertellifotografia-16120243.webp'
+import { useQuery } from '@tanstack/react-query'
+import { apiService } from '@/services/api'
+
 
 export default function Home() {
   const { t } = useLanguage()
   const [heroImageLoaded, setHeroImageLoaded] = useState(false)
   const [promiseImageLoaded, setPromiseImageLoaded] = useState(false)
+  const { data: stats } = useQuery({
+      queryKey: ['avis-stats'],
+      queryFn: apiService.getAvisStats,
+      staleTime: 1000 * 60 * 60,
+    })
 
   return (
     <div className="bg-white overflow-hidden">
@@ -21,6 +29,11 @@ export default function Home() {
         title="MP GROUP | Coordination d'Événements Stratégiques"
         description="MP Group est spécialisé dans la conception, la coordination et le pilotage d'événements à forte portée institutionnelle en Afrique de l'Ouest."
         keywords="conseil stratégique, événementiel institutionnel, Afrique, coordination d'événements, MP Group"
+        aggregateRating={
+          stats && stats.total > 0
+            ? { ratingValue: stats.moyenne, reviewCount: stats.total }
+            : undefined
+        }
       />
       <SchemaOrg type="Organization" />
 

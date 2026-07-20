@@ -96,6 +96,7 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 // Public
 Route::post('/avis', [AvisController::class, 'store']);
 Route::get('/avis', [AvisController::class, 'index']);
+Route::get('/avis/stats', [AvisController::class, 'stats']);
 
 // Admin (protégé par le middleware existant, ex: auth:sanctum + AdminMiddleware)
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
