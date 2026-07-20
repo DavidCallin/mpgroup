@@ -33,7 +33,7 @@ export default function Avis() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (formData.note === 0) {
-      toast.error('Veuillez sélectionner une note.')
+      toast.error(t('avis.form.note.required'))
       return
     }
     mutation.mutate(formData)
@@ -54,45 +54,45 @@ export default function Avis() {
       >
         <input
           required
-          placeholder="Votre nom complet"
+          placeholder={t('avis.form.nom')}
           value={formData.nom_complet}
           onChange={(e) => setFormData({ ...formData, nom_complet: e.target.value })}
           className="w-full border p-2"
         />
         <input
           type="email"
-          placeholder="Email (optionnel)"
+          placeholder={t('avis.form.email')}
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="w-full border p-2"
         />
         <input
           required
-          placeholder="Nom de l'événement organisé par MP GROUP"
+          placeholder={t('avis.form.evenement')}
           value={formData.nom_evenement}
           onChange={(e) => setFormData({ ...formData, nom_evenement: e.target.value })}
           className="w-full border p-2"
         />
         <div>
-          <p className="mb-2">Qualité de l'organisation</p>
+          <p className="mb-2">{t('avis.form.note')}</p>
           <StarRating value={formData.note} onChange={(note) => setFormData({ ...formData, note })} />
         </div>
         <textarea
           required
-          placeholder="Votre appréciation"
+          placeholder={t('avis.form.commentaire')}
           value={formData.commentaire}
           onChange={(e) => setFormData({ ...formData, commentaire: e.target.value })}
           className="w-full border p-2"
           rows={4}
         />
         <button type="submit" disabled={mutation.isPending} className="bg-[#001A4D] text-[#EAB12D] px-6 py-2">
-          {mutation.isPending ? 'Envoi...' : 'Envoyer mon avis'}
+          {mutation.isPending ? t('avis.form.submitting') : t('avis.form.submit')}
         </button>
       </motion.form>
 
       {/* Liste des avis publiés */}
       <div className="grid md:grid-cols-2 gap-6">
-        {isLoading && <p>Chargement...</p>}
+        {isLoading && <p>{t('avis.list.loading')}</p>}
         {avisList?.map((avis) => (
           <motion.div
             key={avis.id}

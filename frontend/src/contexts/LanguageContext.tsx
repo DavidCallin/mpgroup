@@ -339,6 +339,10 @@ const translations = {
     'admin.avis.reject': 'Rejeter',
     'admin.avis.delete': 'Supprimer',
     'admin.avis.delete.confirm': 'Supprimer définitivement cet avis ?',
+    'admin.avis.error.approve': 'Erreur lors de la publication.',
+    'admin.avis.error.reject': 'Erreur lors du rejet.',
+    'admin.avis.error.delete': 'Erreur lors de la suppression.',
+    'admin.avis.error.update': 'Erreur lors de la mise à jour.',
   },
   en: {
     // Navigation
@@ -668,6 +672,10 @@ const translations = {
     'admin.avis.reject': 'Reject',
     'admin.avis.delete': 'Delete',
     'admin.avis.delete.confirm': 'Permanently delete this review?',
+    'admin.avis.error.approve': 'Error publishing the review.',
+    'admin.avis.error.reject': 'Error rejecting the review.',
+    'admin.avis.error.delete': 'Error deleting the review.',
+    'admin.avis.error.update': 'Error updating the setting.',
   }
 }
 
