@@ -93,6 +93,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         { name: 'Devis', href: '/admin/quotes', icon: FileBarChart },
         { name: 'Actualités', href: '/admin/news', icon: FileText },
         { name: 'Avis', href: '/admin/avis', icon: FileText },
+        { name: 'Evenement', href: '/admin/evenements', icon: FileText },
     ]
 
     const SidebarContent = ({ forceExpand = false }: { forceExpand?: boolean }) => {

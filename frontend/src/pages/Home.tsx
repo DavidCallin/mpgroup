@@ -19,7 +19,7 @@ export default function Home() {
   const [promiseImageLoaded, setPromiseImageLoaded] = useState(false)
   const { data: stats } = useQuery({
       queryKey: ['avis-stats'],
-      queryFn: apiService.getAvisStats,
+      queryFn: () => apiService.getAvisStats(),
       staleTime: 1000 * 60 * 60,
     })
 

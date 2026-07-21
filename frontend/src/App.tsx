@@ -33,6 +33,8 @@ import { ArticlesProvider } from './contexts/ArticlesContext'
 import { ProtectedRoute, PublicOnlyRoute } from './components/auth/ProtectedRoute'
 import { CookieConsent } from './components/ui/CookieConsent'
 import ManageAvis from './pages/admin/ManageAvis'
+import ManageEvenements from './pages/admin/ManageEvenements'
+
 
 // Scroll to top component
 function ScrollToTop() {
@@ -364,6 +366,19 @@ const avisManagerRoute = createRoute({
   ),
 })
 
+const adminEvenementsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/evenements',
+  component: () => (
+    <ProtectedRoute>
+      <AdminLayout>
+        <ScrollToTop />
+        <ManageEvenements />
+      </AdminLayout>
+    </ProtectedRoute>
+  ),
+})
+
 // Create route tree
 const routeTree = rootRoute.addChildren([
   indexRoute,
@@ -391,6 +406,7 @@ const routeTree = rootRoute.addChildren([
   adminNewsCreateRoute,
   adminNewsEditRoute,
   avisManagerRoute,
+  adminEvenementsRoute,
 ])
 
 // Create router

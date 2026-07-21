@@ -1,6 +1,6 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api' 
 
-// const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api' // local
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api' // local
 
 export interface ContactFormData {
   nom: string
@@ -151,6 +151,40 @@ export interface NewAvisPayload {
 export interface AvisStats {
   moyenne: number
   total: number
+}
+
+export interface Evenement {
+  id: number
+  nom: string
+  date_evenement: string | null
+}
+
+export interface EvenementAdmin extends Evenement {
+  actif: boolean
+  nombre_avis: number
+  note_moyenne: number
+}
+
+export interface AvisGroupe {
+  evenement_id: number
+  nom_evenement: string
+  note_moyenne: number
+  nombre_avis: number
+  avis: {
+    id: number
+    nom_complet: string
+    note: number
+    commentaire: string
+    created_at: string
+  }[]
+}
+
+export interface NewAvisPayload {
+  evenement_id: number
+  nom_complet: string
+  email?: string
+  note: number
+  commentaire: string
 }
 
 class ApiService {
@@ -443,6 +477,34 @@ class ApiService {
 
   async getAvisStats(): Promise<AvisStats> {
     return this.request<AvisStats>('/avis/stats')
+  }
+
+  // --- Événements (public) ---
+  async getEvenements(): Promise<Evenement[]> {
+    return this.request<Evenement[]>('/evenements')
+  }
+
+  // --- Événements (admin) ---
+  async getAdminEvenements(): Promise<EvenementAdmin[]> {
+    return this.request<EvenementAdmin[]>('/admin/evenements')
+  }
+
+  async createEvenement(data: { nom: string; date_evenement?: string }) {
+    return this.request<{ message: string; evenement: Evenement }>('/admin/evenements', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+  }
+
+  async updateEvenement(id: number, data: Partial<{ nom: string; date_evenement: string; actif: boolean }>) {
+    return this.request<{ message: string; evenement: Evenement }>(`/admin/evenements/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    })
+  }
+
+  async deleteEvenement(id: number) {
+    return this.request<{ message: string }>(`/admin/evenements/${id}`, { method: 'DELETE' })
   }
 }
 
