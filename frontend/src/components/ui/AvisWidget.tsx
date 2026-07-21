@@ -55,9 +55,17 @@ export default function AvisWidget() {
               <p className="text-2xl font-bold text-[#001A4D]">
                 {ev.note_moyenne}<span className="text-sm text-gray-400 font-normal">/5</span>
               </p>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-sm text-gray-500 mt-1 mb-4">
                 {ev.nombre_avis} avis
               </p>
+
+              <Link
+                to="/avis"
+                search={{ evenement: ev.id }}
+                className="text-sm font-medium text-[#001A4D] underline hover:text-[#EAB12D] transition-colors"
+              >
+                Voir les commentaires →
+              </Link>
             </motion.div>
           ))}
         </div>

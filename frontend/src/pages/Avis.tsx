@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useSearch } from '@tanstack/react-router'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { apiService, NewAvisPayload } from '@/services/api'
@@ -7,25 +8,39 @@ import { StarRating } from '@/components/ui/star-rating'
 
 export default function Avis() {
   const queryClient = useQueryClient()
+  const search = useSearch({ from: '/avis' })
   const [openEvent, setOpenEvent] = useState<number | null>(null)
+  const eventRefs = useRef<Record<number, HTMLDivElement | null>>({})
+
   const [formData, setFormData] = useState<Partial<NewAvisPayload>>({
     evenement_id: undefined, nom_complet: '', email: '', note: 0, commentaire: '',
   })
 
-const { data: evenements, error: errEvenements, isFetching, isSuccess } = useQuery({
-  queryKey: ['evenements'],
-  queryFn: () => apiService.getEvenements(),  
-})
-
-console.log('🔵 DEBUG evenements:', { evenements, errEvenements, isFetching, isSuccess })
+  const { data: evenements } = useQuery({
+    queryKey: ['evenements'],
+    queryFn: () => apiService.getEvenements(),
+  })
 
   const { data: avisGroupes, isLoading } = useQuery({
     queryKey: ['avis'],
     queryFn: () => apiService.getAvis(),
   })
 
+  // Ouvre automatiquement l'événement ciblé et scroll vers lui
+  useEffect(() => {
+    if (search.evenement && avisGroupes) {
+      const groupeExiste = avisGroupes.some((g) => g.evenement_id === search.evenement)
+      if (groupeExiste) {
+        setOpenEvent(search.evenement)
+        setTimeout(() => {
+          eventRefs.current[search.evenement!]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100)
+      }
+    }
+  }, [search.evenement, avisGroupes])
+
   const mutation = useMutation({
-    mutationFn: apiService.submitAvis,mutationFn: (data: NewAvisPayload) => apiService.submitAvis(data),
+    mutationFn: (data: NewAvisPayload) => apiService.submitAvis(data),
     onSuccess: (res) => {
       toast.success(res.message)
       setFormData({ evenement_id: undefined, nom_complet: '', email: '', note: 0, commentaire: '' })
@@ -97,8 +112,13 @@ console.log('🔵 DEBUG evenements:', { evenements, errEvenements, isFetching, i
 
         {avisGroupes?.map((groupe) => {
           const isOpen = openEvent === groupe.evenement_id
+          const isHighlighted = search.evenement === groupe.evenement_id
           return (
-            <div key={groupe.evenement_id} className="border">
+            <div
+              key={groupe.evenement_id}
+              ref={(el) => { eventRefs.current[groupe.evenement_id] = el }}
+              className={`border transition-all ${isHighlighted ? 'ring-2 ring-[#EAB12D]' : ''}`}
+            >
               <div className="p-5 flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-lg">{groupe.nom_evenement}</p>
@@ -124,7 +144,7 @@ console.log('🔵 DEBUG evenements:', { evenements, errEvenements, isFetching, i
                     <div key={a.id} className="border-b last:border-0 pb-3">
                       <StarRating value={a.note} readonly size={14} />
                       <p className="text-sm mt-1">"{a.commentaire}"</p>
-                      <p className="text-xs text-gray-400 mt-1">---- {a.nom_complet}</p>
+                      <p className="text-xs text-gray-400 mt-1">— {a.nom_complet}</p>
                     </div>
                   ))}
                 </div>

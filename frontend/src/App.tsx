@@ -344,6 +344,9 @@ const adminNewsEditRoute = createRoute({
 const avisRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/avis',
+  validateSearch: (search: Record<string, unknown>) => ({
+    evenement: search.evenement ? Number(search.evenement) : undefined,
+  }),
   component: () => (
     <>
       <ScrollToTop />
