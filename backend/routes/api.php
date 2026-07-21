@@ -7,6 +7,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\AvisController;
+use App\Http\Controllers\Api\EvenementController;
 
 
 
@@ -93,13 +94,20 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
 });
 
 
+
 // Public
-Route::post('/avis', [AvisController::class, 'store']);
+Route::get('/evenements', [EvenementController::class, 'index']);
 Route::get('/avis', [AvisController::class, 'index']);
+Route::post('/avis', [AvisController::class, 'store']);
 Route::get('/avis/stats', [AvisController::class, 'stats']);
 
-// Admin (protégé par le middleware existant, ex: auth:sanctum + AdminMiddleware)
+// Admin
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/evenements', [EvenementController::class, 'adminIndex']);
+    Route::post('/evenements', [EvenementController::class, 'store']);
+    Route::put('/evenements/{evenement}', [EvenementController::class, 'update']);
+    Route::delete('/evenements/{evenement}', [EvenementController::class, 'destroy']);
+
     Route::get('/avis', [AvisController::class, 'adminIndex']);
     Route::patch('/avis/{avi}/approve', [AvisController::class, 'approve']);
     Route::patch('/avis/{avi}/reject', [AvisController::class, 'reject']);

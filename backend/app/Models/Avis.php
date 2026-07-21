@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Avis extends Model
 {
     protected $table = 'avis';
-    protected $fillable = ['nom_complet', 'email', 'nom_evenement', 'note', 'commentaire', 'statut'];
+    protected $fillable = ['evenement_id', 'nom_complet', 'email', 'note', 'commentaire', 'statut'];
     protected $casts = ['note' => 'integer'];
+
+    public function evenement()
+    {
+        return $this->belongsTo(Evenement::class);
+    }
 }

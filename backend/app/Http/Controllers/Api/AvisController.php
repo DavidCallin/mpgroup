@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Avis;
+use App\Models\Evenement;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class AvisController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'evenement_id'   => 'required|exists:evenements,id',
             'nom_complet'    => 'required|string|max:255',
             'email'          => 'nullable|email',
-            'nom_evenement'  => 'required|string|max:255',
             'note'           => 'required|integer|min:1|max:5',
             'commentaire'    => 'required|string|max:1000',
         ]);
@@ -36,11 +37,26 @@ class AvisController extends Controller
     // GET /api/avis (public, avis publiés uniquement)
     public function index()
     {
-        return Avis::where('statut', 'publie')
-            ->orderBy('created_at', 'desc')
+        $evenements = Evenement::whereHas('avis', fn($q) => $q->where('statut', 'publie'))
+            ->with(['avis' => fn($q) => $q->where('statut', 'publie')->orderBy('created_at', 'desc')])
             ->get();
-    }
 
+        return $evenements->map(function ($e) {
+            return [
+                'evenement_id' => $e->id,
+                'nom_evenement' => $e->nom,
+                'note_moyenne' => $e->noteMoyenne(),
+                'nombre_avis' => $e->avis->count(),
+                'avis' => $e->avis->map(fn($a) => [
+                    'id' => $a->id,
+                    'nom_complet' => $a->nom_complet,
+                    'note' => $a->note,
+                    'commentaire' => $a->commentaire,
+                    'created_at' => $a->created_at,
+                ]),
+            ];
+        });
+    }
     // --- Admin ---
 
     // GET /api/admin/avis
