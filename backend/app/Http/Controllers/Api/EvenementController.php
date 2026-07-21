@@ -65,4 +65,25 @@ class EvenementController extends Controller
         $evenement->delete(); // cascade supprime aussi les avis liés (cascadeOnDelete)
         return response()->json(['message' => 'Événement supprimé.']);
     }
+
+    // GET /api/evenements/top-notes (public)
+    public function topNotes()
+    {
+        $evenements = Evenement::where('actif', true)
+            ->whereHas('avis', fn($q) => $q->where('statut', 'publie'))
+            ->get()
+            ->map(function ($e) {
+                return [
+                    'id' => $e->id,
+                    'nom' => $e->nom,
+                    'note_moyenne' => $e->noteMoyenne(),
+                    'nombre_avis' => $e->nombreAvis(),
+                ];
+            })
+            ->sortByDesc('note_moyenne')
+            ->take(3)
+            ->values();
+
+        return response()->json($evenements);
+    }
 }

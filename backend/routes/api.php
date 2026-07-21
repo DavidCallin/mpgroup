@@ -100,6 +100,7 @@ Route::get('/evenements', [EvenementController::class, 'index']);
 Route::get('/avis', [AvisController::class, 'index']);
 Route::post('/avis', [AvisController::class, 'store']);
 Route::get('/avis/stats', [AvisController::class, 'stats']);
+Route::get('/evenements/top-notes', [EvenementController::class, 'topNotes']);
 
 // Admin
 Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function () {

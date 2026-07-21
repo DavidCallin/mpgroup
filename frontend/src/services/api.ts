@@ -1,6 +1,6 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api' 
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api' 
 
-//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api' // local
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api' // local
 
 export interface ContactFormData {
   nom: string
@@ -185,6 +185,13 @@ export interface NewAvisPayload {
   email?: string
   note: number
   commentaire: string
+}
+
+export interface EvenementTopNote {
+  id: number
+  nom: string
+  note_moyenne: number
+  nombre_avis: number
 }
 
 class ApiService {
@@ -505,6 +512,9 @@ class ApiService {
 
   async deleteEvenement(id: number) {
     return this.request<{ message: string }>(`/admin/evenements/${id}`, { method: 'DELETE' })
+  }
+  async getTopNotesEvenements(): Promise<EvenementTopNote[]> {
+    return this.request<EvenementTopNote[]>('/evenements/top-notes')
   }
 }
 

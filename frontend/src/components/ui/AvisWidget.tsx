@@ -1,23 +1,20 @@
 import { useQuery } from '@tanstack/react-query'
 import { motion } from 'framer-motion'
-import useEmblaCarousel from 'embla-carousel-react'
 import { Link } from '@tanstack/react-router'
+import { Trophy } from 'lucide-react'
 import { apiService } from '@/services/api'
 import { StarRating } from '@/components/ui/star-rating'
 import { useLanguage } from '@/contexts/LanguageContext'
 
 export default function AvisWidget() {
   const { t } = useLanguage()
-  const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' }, [])
 
-  const { data: avisList, isLoading } = useQuery({
-    queryKey: ['avis'],
-    queryFn: () => apiService.getAvis(),
+  const { data: topEvenements, isLoading } = useQuery({
+    queryKey: ['top-notes-evenements'],
+    queryFn: () => apiService.getTopNotesEvenements(),
   })
 
-  const recentAvis = avisList?.slice(0, 6) ?? []
-
-  if (isLoading || recentAvis.length === 0) return null
+  if (isLoading || !topEvenements || topEvenements.length === 0) return null
 
   return (
     <section className="py-20 bg-[#001A4D] text-white">
@@ -33,23 +30,36 @@ export default function AvisWidget() {
           <p className="text-[#EAB12D] mt-2">{t('avis.widget.subtitle')}</p>
         </motion.div>
 
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-6">
-            {recentAvis.map((avis) => (
-              <div key={avis.id} className="flex-[0_0_85%] md:flex-[0_0_32%] min-w-0">
-                <div className="bg-white text-[#001A4D] p-6 h-full flex flex-col justify-between">
-                  <div>
-                    <StarRating value={avis.note} readonly size={16} />
-                    <p className="text-sm mt-3 italic">"{avis.commentaire}"</p>
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <p className="font-semibold text-sm">{avis.nom_evenement}</p>
-                    <p className="text-xs text-gray-500">- {avis.nom_complet}</p>
-                  </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {topEvenements.map((ev, index) => (
+            <motion.div
+              key={ev.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: '-50px' }}
+              className="bg-white text-[#001A4D] p-6 relative"
+            >
+              {index === 0 && (
+                <div className="absolute -top-3 -right-3 bg-[#EAB12D] text-[#001A4D] rounded-full p-2">
+                  <Trophy size={18} />
                 </div>
+              )}
+
+              <p className="font-semibold text-lg mb-3">{ev.nom}</p>
+
+              <div className="flex items-center gap-2 mb-1">
+                <StarRating value={Math.round(ev.note_moyenne)} readonly size={20} />
               </div>
-            ))}
-          </div>
+
+              <p className="text-2xl font-bold text-[#001A4D]">
+                {ev.note_moyenne}<span className="text-sm text-gray-400 font-normal">/5</span>
+              </p>
+              <p className="text-sm text-gray-500 mt-1">
+                {ev.nombre_avis} avis
+              </p>
+            </motion.div>
+          ))}
         </div>
 
         <div className="text-center mt-10">
