@@ -1,6 +1,6 @@
-//const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api' 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://mpgroupbackend.collectivitesanoussiiyerouokinassala.org/api' 
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api' // local
+//const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api' // local
 
 export interface ContactFormData {
   nom: string
