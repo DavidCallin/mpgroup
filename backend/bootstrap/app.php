@@ -7,6 +7,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
+use Illuminate\Http\Request;
+use Throwable;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -33,6 +35,50 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
-    })->create();
+        $exceptions->render(function (Throwable $e, Request $request) {
+            if (!$request->is('api/*')) {
+                return null; // laisse Laravel gérer normalement les routes web/Inertia
+            }
 
+            $status = match (true) {
+                $e instanceof \Illuminate\Validation\ValidationException => 422,
+                $e instanceof \Illuminate\Auth\AuthenticationException => 401,
+                $e instanceof \Illuminate\Auth\Access\AuthorizationException => 403,
+                $e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException => 404,
+                $e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException => 404,
+                $e instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException => 405,
+                default => 500,
+            };
+
+            // Erreurs de validation : on garde les messages par champ, utiles au frontend
+            if ($e instanceof \Illuminate\Validation\ValidationException) {
+                return response()->json([
+                    'message' => 'Les données envoyées sont invalides.',
+                    'errors' => $e->errors(),
+                ], 422);
+            }
+
+            // En local (debug actif), on garde le message réel pour développer plus vite
+            if (config('app.debug')) {
+                return response()->json([
+                    'message' => $e->getMessage(),
+                    'exception' => get_class($e),
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine(),
+                ], $status);
+            }
+
+            // En production : message générique, aucune fuite d'information technique
+            $messagesGeneriques = [
+                401 => "Vous devez être connecté pour effectuer cette action.",
+                403 => "Vous n'êtes pas autorisé à effectuer cette action.",
+                404 => "La ressource demandée n'a pas été trouvée.",
+                405 => "Méthode non autorisée.",
+                500 => "Une erreur est survenue. Merci de réessayer ou de nous contacter.",
+            ];
+
+            return response()->json([
+                'message' => $messagesGeneriques[$status] ?? "Une erreur est survenue.",
+            ], $status);
+        });
+    })->create();
