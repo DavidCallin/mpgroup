@@ -15,19 +15,23 @@ class StoreQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom' => 'sometimes|string|max:255',
-            'prenom' => 'nullable|string|max:255',
-            'email' => 'sometimes|email|max:255',
-            'telephone' => 'sometimes|string|max:20',
-            'entreprise' => 'nullable|string|max:255',
-            'type_evenement' => 'sometimes|string|max:255',
-            'date_evenement' => 'sometimes|date',
-            'lieu_evenement' => 'sometimes|string|max:255',
-            'nombre_participants' => 'sometimes|integer|min:1',
-            'description' => 'sometimes|string',
-            'services_souhaites' => 'nullable|array',
-            'budget_estime' => 'sometimes|numeric|min:0',
-            'discovery' => 'nullable|string|max:255'
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'telephone' => 'required|string|max:20',
+            'entreprise' => 'required|string|max:255',
+            'type_evenement' => 'required|string|max:255',
+            'date_evenement' => 'required|date',
+            'lieu_evenement' => 'required|string|max:255',
+            'nombre_participants' => 'required|integer|min:1',
+            'description' => 'required|string',
+            'services_souhaites' => 'required|array|min:1',
+
+            'image_souhaitee' => 'required|in:basique,premium,prestige',
+            'type_acces' => 'required|in:invitation,billetterie',
+            'prix_ticket' => 'required_if:type_acces,billetterie|nullable|numeric|min:0',
+
+            'budget_estime' => 'required|numeric|min:0',
         ];
     }
 
@@ -48,7 +52,9 @@ class StoreQuoteRequest extends FormRequest
             'description.required' => 'La description est obligatoire.',
             'description.min' => 'La description doit contenir au moins 10 caractères.',
             'budget_estime.min' => 'Veuillez indiquez une estimation concrète.',
-            'budget_estime.required' => 'Le budget estimé est obligatoire.'
+            'budget_estime.required' => 'Le budget estimé est obligatoire.',
+            'services_souhaites.min' => 'Veuillez sélectionner au moins un service.',
+            'prix_ticket.required_if' => 'Le prix du ticket est requis pour un événement à billetterie.',
         ];
     }
 }

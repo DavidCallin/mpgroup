@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Quote;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -12,17 +13,21 @@ class QuoteMessage extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $quoteData;
+    public array $quoteData;
+    public int $quoteId;
 
-    public function __construct($quoteData)
+    public function __construct(Quote $quote)
     {
-        $this->quoteData = $quoteData;
+        $this->quoteData = $quote->toArray();
+        $this->quoteId = $quote->id;
     }
 
     public function envelope(): Envelope
     {
+        $numeroDevis = 'Devis' . str_pad($this->quoteId, 4, '0', STR_PAD_LEFT);
+
         return new Envelope(
-            subject: 'Nouvelle demande de devis - MP GROUP',
+            subject: "Devis N° {$numeroDevis} - Nouvelle demande de devis MP GROUP",
             replyTo: $this->quoteData['email']
         );
     }
@@ -31,6 +36,10 @@ class QuoteMessage extends Mailable
     {
         return new Content(
             view: 'emails.quote-message',
+            with: [
+                'quoteData' => $this->quoteData,
+                'quoteId' => $this->quoteId,
+            ],
         );
     }
 

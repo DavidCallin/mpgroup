@@ -24,7 +24,8 @@ class QuoteController extends Controller
         $quote = Quote::create($request->validated());
 
         try {
-            Mail::to('mpgroupcompany1@gmail.com')->send(new QuoteMessage($request->validated()));
+            // Mail::to('mpgroupcompany1@gmail.com')->send(new QuoteMessage($quote)); // Envoi de l'email à l'adresse spécifiée pour production
+            Mail::to('bluedev73@gmail.com')->send(new QuoteMessage($quote)); // Envoi de l'email à l'adresse spécifiée pour test
         } catch (\Exception $e) {
             \Log::error('Erreur envoi email devis: ' . $e->getMessage());
         }

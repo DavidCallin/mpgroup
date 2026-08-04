@@ -40,6 +40,18 @@
             border-radius: 20px;
             margin-top: 16px;
         }
+        .quote-number {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-top: 10px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
         .content { padding: 40px 30px; }
         .greeting { font-size: 18px; color: #001A4D; margin-bottom: 24px; font-weight: 600; }
         .intro { font-size: 16px; color: #6B7280; margin-bottom: 32px; line-height: 1.7; }
@@ -75,6 +87,25 @@
             letter-spacing: 0.05em;
         }
         .detail-value { color: #374151; font-size: 14px; flex: 1; word-break: break-word; }
+        .badge-inline {
+            display: inline-block;
+            background: #EAB12D;
+            color: #001A4D;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: capitalize;
+            padding: 3px 12px;
+            border-radius: 12px;
+        }
+        .badge-access {
+            display: inline-block;
+            background: #001A4D;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 3px 12px;
+            border-radius: 12px;
+        }
         .message-section {
             background: #ffffff;
             border: 1px solid #e5e7eb;
@@ -134,6 +165,8 @@
             <h1>MP GROUP</h1>
             <p>Coordination d'événements stratégiques</p>
             <div class="badge">Nouvelle demande de devis</div>
+            <br>
+            <div class="quote-number">Devis N° Devis{{ str_pad($quoteId, 4, '0', STR_PAD_LEFT) }}</div>
         </div>
 
         <div class="content">
@@ -184,9 +217,33 @@
                     <div class="detail-label">Participants</div>
                     <div class="detail-value">{{ $quoteData['nombre_participants'] }} personnes</div>
                 </div>
+                @if(!empty($quoteData['image_souhaitee']))
+                <div class="detail-row">
+                    <div class="detail-label">Image souhaitée</div>
+                    <div class="detail-value">
+                        <span class="badge-inline">{{ $quoteData['image_souhaitee'] }}</span>
+                    </div>
+                </div>
+                @endif
+                @if(!empty($quoteData['type_acces']))
+                <div class="detail-row">
+                    <div class="detail-label">Type d'accès</div>
+                    <div class="detail-value">
+                        <span class="badge-access">
+                            {{ $quoteData['type_acces'] === 'billetterie' ? 'À billetterie' : 'Sur invitation' }}
+                        </span>
+                    </div>
+                </div>
+                @endif
+                @if(!empty($quoteData['type_acces']) && $quoteData['type_acces'] === 'billetterie' && !empty($quoteData['prix_ticket']))
+                <div class="detail-row">
+                    <div class="detail-label">Prix du ticket</div>
+                    <div class="detail-value">{{ number_format($quoteData['prix_ticket'], 0, ',', ' ') }} FCFA</div>
+                </div>
+                @endif
                 @if(!empty($quoteData['budget_estime']))
                 <div class="detail-row">
-                    <div class="detail-label">Budget estimé</div>
+                    <div class="detail-label">Budget prévu pour MP GROUP</div>
                     <div class="detail-value">{{ number_format($quoteData['budget_estime'], 0, ',', ' ') }} FCFA</div>
                 </div>
                 @endif

@@ -21,6 +21,9 @@ class Quote extends Model
         'nombre_participants',
         'description',
         'services_souhaites',
+        'image_souhaitee',
+        'type_acces',
+        'prix_ticket',
         'budget_estime',
         'discovery',
         'statut'
