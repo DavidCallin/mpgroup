@@ -102,13 +102,12 @@ export default function ManageMessages() {
   // Filtrer les contacts
   const filteredContacts = contacts.filter(contact => {
     const matchesSearch = 
-      contact.fullname.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (contact.organization && contact.organization.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      contact.email.toLowerCase().includes(searchQuery.toLowerCase())
+      (contact.fullname ?? '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (contact.organization ?? '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (contact.email ?? '').toLowerCase().includes(searchQuery.toLowerCase())
     
     const matchesFilter = filter === 'all' ? true : contact.contactStatus === filter
     
-    // Filtre par date
     const contactDate = new Date(contact.created_at)
     const now = new Date()
     let matchesDateFilter = true
