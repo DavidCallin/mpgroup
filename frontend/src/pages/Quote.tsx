@@ -104,6 +104,9 @@ export default function Quote() {
       eventParticipants: '',
       description: '',
       services: '',
+      image_souhaitee: '',
+      type_acces: '',
+      prix_ticket: '',
       providers: '',
       budget: '',
       discovery: '',
@@ -139,6 +142,19 @@ export default function Quote() {
     })
   }, [])
 
+  const handleSelectField = useCallback((field: string, value: string) => {
+    setFormData(prev => {
+      const newData = {
+        ...prev,
+        [field]: value,
+        // Si on repasse en "invitation", on vide le prix du ticket
+        ...(field === 'type_acces' && value === 'invitation' ? { prix_ticket: '' } : {})
+      }
+      localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify(newData))
+      return newData
+    })
+  }, [])
+
   // Fonction pour vider le formulaire manuellement
   const clearForm = useCallback(() => {
     const emptyFormData = {
@@ -156,6 +172,9 @@ export default function Quote() {
       eventParticipants: '',
       description: '',
       services: '',
+      image_souhaitee: '',
+      type_acces: '',
+      prix_ticket: '',
       providers: '',
       budget: '',
       discovery: '',
@@ -188,6 +207,27 @@ export default function Quote() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Validation des champs à sélection (boutons custom, pas de "required" HTML natif)
+    if (!formData.image_souhaitee) {
+      toast.error("Veuillez choisir un niveau d'image pour l'événement.", {
+        style: { background: '#dc2626', color: '#ffffff', borderRadius: '0px' }
+      })
+      return
+    }
+    if (!formData.type_acces) {
+      toast.error("Veuillez préciser si l'événement est sur invitation ou à billetterie.", {
+        style: { background: '#dc2626', color: '#ffffff', borderRadius: '0px' }
+      })
+      return
+    }
+    if (formData.type_acces === 'billetterie' && !formData.prix_ticket) {
+      toast.error('Veuillez indiquer le prix du ticket.', {
+        style: { background: '#dc2626', color: '#ffffff', borderRadius: '0px' }
+      })
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
@@ -205,6 +245,11 @@ export default function Quote() {
         nombre_participants: parseInt(formData.eventParticipants) || 1,
         description: `${formData.description}\n\nDurée: ${formData.eventDuration}\n\nDate alternative: ${formData.eventDateAlternative || 'Aucune'}\n\nPosition: ${formData.position || 'Non spécifiée'}\n\nComment nous avez-vous connu: ${formData.discovery || 'Non spécifié'}\n\nInformations complémentaires: ${formData.additional || 'Aucune'}`,
         services_souhaites: formData.services ? [formData.services] : undefined,
+        image_souhaitee: formData.image_souhaitee as 'basique' | 'premium' | 'prestige',
+        type_acces: formData.type_acces as 'invitation' | 'billetterie',
+        prix_ticket: formData.type_acces === 'billetterie' && formData.prix_ticket
+          ? parseFloat(formData.prix_ticket)
+          : undefined,
         budget_estime: formData.budget ? parseFloat(formData.budget) : undefined,
         discovery: formData.discovery || undefined
       }
@@ -238,6 +283,9 @@ export default function Quote() {
         eventParticipants: '',
         description: '',
         services: '',
+        image_souhaitee: '',
+        type_acces: '',
+        prix_ticket: '',
         providers: '',
         budget: '',
         discovery: '',
@@ -344,6 +392,7 @@ export default function Quote() {
                     name="structure"
                     label={t('quote.form.structure')}
                     placeholder={t('quote.form.structure.placeholder')}
+                    required
                     value={formData.structure || ''}
                     onChange={handleInputChange}
                   />
@@ -353,6 +402,7 @@ export default function Quote() {
                     name="position"
                     label={t('quote.form.position')}
                     placeholder="Directeur Marketing"
+                    required
                     value={formData.position || ''}
                     onChange={handleInputChange}
                   />
@@ -431,6 +481,7 @@ export default function Quote() {
                       name="eventLocation"
                       label={t('quote.form.event.location')}
                       placeholder={t('quote.form.event.location.placeholder')}
+                      required
                       value={formData.eventLocation || ''}
                       onChange={handleInputChange}
                     />
@@ -444,6 +495,96 @@ export default function Quote() {
                     value={formData.eventParticipants}
                     onChange={handleInputChange}
                   />
+
+                  {/* Image souhaitée pour l'événement */}
+                  <div className="space-y-3 sm:space-y-4">
+                    <Label className="text-xs sm:text-xs md:text-xs font-bold uppercase tracking-widest text-primary/50">
+                      {t('quote.form.image')} <span className="text-secondary">*</span>
+                    </Label>
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                      {(['basique', 'premium', 'prestige'] as const).map((niveau) => (
+                        <motion.button
+                          key={niveau}
+                          type="button"
+                          onClick={() => handleSelectField('image_souhaitee', niveau)}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`
+                            relative p-3 sm:p-4 text-xs sm:text-sm font-medium capitalize transition-all duration-300 border-2 group min-h-[44px] flex items-center justify-center
+                            ${
+                              formData.image_souhaitee === niveau
+                                ? 'border-secondary bg-secondary/5 text-primary'
+                                : 'border-primary/10 hover:border-secondary/50 text-primary/70 hover:text-primary'
+                            }
+                          `}
+                        >
+                          <span className="relative z-10">{t(`quote.form.image.${niveau}`)}</span>
+                          {formData.image_souhaitee === niveau && (
+                            <motion.div
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              className="absolute top-1 sm:top-2 right-1 sm:right-2 w-4 sm:w-5 h-4 sm:h-5 bg-secondary rounded-full flex items-center justify-center"
+                            >
+                              <Check size={10} className="text-primary sm:w-3 sm:h-3" />
+                            </motion.div>
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Type d'accès à l'événement */}
+                  <div className="space-y-3 sm:space-y-4">
+                    <Label className="text-xs sm:text-xs md:text-xs font-bold uppercase tracking-widest text-primary/50">
+                      {t('quote.form.access')} <span className="text-secondary">*</span>
+                    </Label>
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                      {([
+                        { value: 'invitation', label: t('quote.form.access.invitation') },
+                        { value: 'billetterie', label: t('quote.form.access.billetterie') },
+                      ] as const).map((option) => (
+                        <motion.button
+                          key={option.value}
+                          type="button"
+                          onClick={() => handleSelectField('type_acces', option.value)}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className={`
+                            relative p-3 sm:p-4 text-xs sm:text-sm font-medium transition-all duration-300 border-2 group min-h-[44px] flex items-center justify-center
+                            ${
+                              formData.type_acces === option.value
+                                ? 'border-secondary bg-secondary/5 text-primary'
+                                : 'border-primary/10 hover:border-secondary/50 text-primary/70 hover:text-primary'
+                            }
+                          `}
+                        >
+                          <span className="relative z-10">{option.label}</span>
+                          {formData.type_acces === option.value && (
+                            <motion.div
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              className="absolute top-1 sm:top-2 right-1 sm:right-2 w-4 sm:w-5 h-4 sm:h-5 bg-secondary rounded-full flex items-center justify-center"
+                            >
+                              <Check size={10} className="text-primary sm:w-3 sm:h-3" />
+                            </motion.div>
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Prix du ticket - affiché seulement si "billetterie" sélectionné */}
+                  {formData.type_acces === 'billetterie' && (
+                    <FormField
+                      name="prix_ticket"
+                      label={t('quote.form.ticket.price')}
+                      placeholder={t('quote.form.ticket.price.placeholder')}
+                      type="number"
+                      required
+                      value={formData.prix_ticket || ''}
+                      onChange={handleInputChange}
+                    />
+                  )}
                 </div>
               </div>
 
@@ -467,6 +608,7 @@ export default function Quote() {
                     label={t('quote.form.services')}
                     placeholder={t('quote.form.services.placeholder')}
                     rows={3}
+                    required
                     value={formData.services || ''}
                     onChange={handleInputChange}
                   />
@@ -475,6 +617,7 @@ export default function Quote() {
                     label={t('quote.form.providers')}
                     placeholder={t('quote.form.providers.placeholder')}
                     rows={3}
+                    required
                     value={formData.providers || ''}
                     onChange={handleInputChange}
                   />
@@ -490,7 +633,7 @@ export default function Quote() {
                   name="budget"
                   label={t('quote.form.budget')}
                   placeholder={t('quote.form.budget.placeholder')}
-                  
+                  required
                   value={formData.budget || ''}
                   onChange={handleInputChange}
                 />

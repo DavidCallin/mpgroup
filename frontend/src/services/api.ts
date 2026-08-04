@@ -24,6 +24,9 @@ export interface QuoteFormData {
   nombre_participants: number
   description: string
   services_souhaites?: string[]
+  image_souhaitee?: 'basique' | 'premium' | 'prestige'
+  type_acces?: 'invitation' | 'billetterie'
+  prix_ticket?: number
   budget_estime?: number
   discovery?: string
 }
@@ -41,6 +44,9 @@ export interface Quote {
   nombre_participants: number
   description: string
   services_souhaites?: string[]
+  image_souhaitee?: 'basique' | 'premium' | 'prestige'
+  type_acces?: 'invitation' | 'billetterie'
+  prix_ticket?: number
   budget_estime?: number
   statut: 'nouveau' | 'en_cours' | 'traite' | 'refuse'
   created_at: string
