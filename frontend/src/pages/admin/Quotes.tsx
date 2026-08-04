@@ -82,6 +82,11 @@ export default function Quotes() {
     })
   }
 
+  // Formater le numéro de devis
+  const formatQuoteNumber = (id: number) => {
+    return `Devis${String(id).padStart(4, '0')}`
+  }
+
   // Obtenir le style du badge selon le statut
   const getStatusBadge = (status: Quote['statut']) => {
     const styles = {
@@ -101,6 +106,35 @@ export default function Quotes() {
     return (
       <Badge className={`${styles[status]} border text-xs font-bold uppercase tracking-wider`}>
         {labels[status]}
+      </Badge>
+    )
+  }
+
+  // Badge pour le niveau d'image souhaité
+  const getImageBadge = (niveau?: Quote['image_souhaitee']) => {
+    if (!niveau) return null
+    const styles = {
+      basique: 'bg-gray-500/10 text-gray-600 border-gray-200',
+      premium: 'bg-secondary/10 text-secondary border-secondary/20',
+      prestige: 'bg-primary/10 text-primary border-primary/20',
+    }
+    return (
+      <Badge className={`${styles[niveau]} border text-xs font-bold capitalize`}>
+        {niveau}
+      </Badge>
+    )
+  }
+
+  // Badge pour le type d'accès
+  const getAccessBadge = (type?: Quote['type_acces']) => {
+    if (!type) return null
+    return (
+      <Badge className={`${
+        type === 'billetterie'
+          ? 'bg-purple-500/10 text-purple-600 border-purple-200'
+          : 'bg-indigo-500/10 text-indigo-600 border-indigo-200'
+      } border text-xs font-bold`}>
+        {type === 'billetterie' ? 'Billetterie' : 'Invitation'}
       </Badge>
     )
   }
@@ -362,6 +396,13 @@ export default function Quotes() {
                   <div className="flex-1 space-y-3">
                     <div className="flex items-start justify-between">
                       <div>
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <span className="text-xs font-mono font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded">
+                            Devis N° {formatQuoteNumber(quote.id)}
+                          </span>
+                          {getImageBadge(quote.image_souhaitee)}
+                          {getAccessBadge(quote.type_acces)}
+                        </div>
                         <h3 className="font-bold text-primary text-lg">
                           {quote.prenom} {quote.nom}
                         </h3>
@@ -391,14 +432,24 @@ export default function Quotes() {
                       </div>
                     </div>
 
-                    {quote.budget_estime && (
-                      <div className="flex items-center gap-2 text-sm">
-                        <Euro size={14} className="text-green-600" />
-                        <span className="font-medium text-green-600">
-                          Budget estimé: {quote.budget_estime.toLocaleString()} €
-                        </span>
-                      </div>
-                    )}
+                    <div className="flex flex-wrap items-center gap-4">
+                      {quote.type_acces === 'billetterie' && quote.prix_ticket && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Euro size={14} className="text-purple-600" />
+                          <span className="font-medium text-purple-600">
+                            Ticket: {quote.prix_ticket.toLocaleString('fr-FR')} FCFA
+                          </span>
+                        </div>
+                      )}
+                      {quote.budget_estime && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Euro size={14} className="text-green-600" />
+                          <span className="font-medium text-green-600">
+                            Budget MP GROUP: {quote.budget_estime.toLocaleString('fr-FR')} FCFA
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div className="flex flex-col items-end gap-4">
@@ -464,9 +515,12 @@ export default function Quotes() {
           >
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-primary">
-                  Devis #{selectedQuote.id}
-                </h2>
+                <div>
+                  <h2 className="text-xl font-bold text-primary">
+                    Devis N° {formatQuoteNumber(selectedQuote.id)}
+                  </h2>
+                  <p className="text-xs text-gray-400 font-mono mt-1">ID interne #{selectedQuote.id}</p>
+                </div>
                 <button
                   onClick={closeQuoteModal}
                   className="text-gray-400 hover:text-gray-600"
@@ -498,11 +552,40 @@ export default function Quotes() {
                     <p><span className="font-medium">Lieu:</span> {selectedQuote.lieu_evenement}</p>
                     <p><span className="font-medium">Participants:</span> {selectedQuote.nombre_participants}</p>
                     {selectedQuote.budget_estime && (
-                      <p><span className="font-medium">Budget:</span> {selectedQuote.budget_estime.toLocaleString()} €</p>
+                      <p><span className="font-medium">Budget MP GROUP:</span> {selectedQuote.budget_estime.toLocaleString('fr-FR')} FCFA</p>
                     )}
                   </div>
                 </div>
               </div>
+
+              {/* Image souhaitée, type d'accès, prix ticket */}
+              {(selectedQuote.image_souhaitee || selectedQuote.type_acces) && (
+                <div>
+                  <h3 className="font-bold text-primary mb-3">Formule événementielle</h3>
+                  <div className="flex flex-wrap items-center gap-3">
+                    {selectedQuote.image_souhaitee && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-500">Image souhaitée:</span>
+                        {getImageBadge(selectedQuote.image_souhaitee)}
+                      </div>
+                    )}
+                    {selectedQuote.type_acces && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-500">Accès:</span>
+                        {getAccessBadge(selectedQuote.type_acces)}
+                      </div>
+                    )}
+                  </div>
+                  {selectedQuote.type_acces === 'billetterie' && selectedQuote.prix_ticket && (
+                    <p className="text-sm mt-2">
+                      <span className="font-medium">Prix du ticket:</span>{' '}
+                      <span className="text-purple-600 font-semibold">
+                        {selectedQuote.prix_ticket.toLocaleString('fr-FR')} FCFA
+                      </span>
+                    </p>
+                  )}
+                </div>
+              )}
               
               <div>
                 <h3 className="font-bold text-primary mb-3">Description</h3>
