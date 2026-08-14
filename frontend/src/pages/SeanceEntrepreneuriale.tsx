@@ -495,6 +495,14 @@ export default function SeanceEntrepreneuriale() {
                 );
               })}
             </motion.div>
+            <center>
+                <motion.div variants={fadeUp} className="mt-10">
+                  <PrimaryButton>
+                    {t("seanceEntrepreneuriale.cta.reservePrice")}
+                  </PrimaryButton>
+                </motion.div>
+            </center>
+                
           </div>
         </section>
 
@@ -610,7 +618,13 @@ export default function SeanceEntrepreneuriale() {
                 </motion.div>
               ))}
             </motion.div>
-
+            <center>
+                <motion.div variants={fadeUp} className="mt-10">
+                  <PrimaryButton>
+                    {t("seanceEntrepreneuriale.cta.reservePrice")}
+                  </PrimaryButton>
+                </motion.div>
+            </center>
           </div>
         </section>
 
