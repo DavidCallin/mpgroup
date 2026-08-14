@@ -297,6 +297,10 @@ const translations = {
     'portfolio.event.chariow.desc': 'Rencontre des créateurs de contenu et des utilisateurs de la plateforme chariow.',
     'portfolio.event.chariow.role': 'Facilitation communautaire',
     'portfolio.event.chariow.result': 'Communauté renforcée',
+    'portfolio.event.wbs.title': 'Wilson BOTOYIYE Summit',
+    'portfolio.event.wbs.desc': 'La plus grande conférence des produits digitaux en afrique francophone',
+    'portfolio.event.wbs.role': 'Coordination culturelle',
+    'portfolio.event.wbs.location': 'Bénin',
 
     // Writing Section
     'portfolio.write.rfi.title': 'Mondoblog RFI - Environnement',
@@ -352,6 +356,102 @@ const translations = {
     'admin.avis.error.reject': 'Erreur lors du rejet.',
     'admin.avis.error.delete': 'Erreur lors de la suppression.',
     'admin.avis.error.update': 'Erreur lors de la mise à jour.',
+
+    // D'ICI LÀ — Séance Entrepreneuriale
+    'seanceEntrepreneuriale.seo.title': 'Séance Entrepreneuriale | MP GROUP',
+    'seanceEntrepreneuriale.seo.description': 'Une séance entrepreneuriale intensive de 3 heures pour transformer ton idée en projet concret et repartir avec un plan d’action de 30 jours.',
+
+    // Hero
+    'seanceEntrepreneuriale.hero.badge': 'Séance Entrepreneuriale',
+    'seanceEntrepreneuriale.hero.title1': 'D\'ici',
+    'seanceEntrepreneuriale.hero.title2': 'LÀ',
+    'seanceEntrepreneuriale.hero.subtitle': 'Du début au projet.',
+    'seanceEntrepreneuriale.hero.description': 'Il y a l’idée que tu portes depuis des mois. Il y a le projet qu’elle peut devenir. D’ici là, il ne manque qu’une chose : COMMENCER.',
+    'seanceEntrepreneuriale.hero.hours': 'heures',
+    'seanceEntrepreneuriale.hero.visual': 'Pour passer de l’idée à une première version solide de ton projet.',
+
+    // Informations rapides
+    'seanceEntrepreneuriale.info.date': '9 SEPTEMBRE 2026',
+    'seanceEntrepreneuriale.info.duration': '3 HEURES',
+    'seanceEntrepreneuriale.info.places': '20 PLACES',
+    'seanceEntrepreneuriale.info.price.label': 'Seulement',
+    'seanceEntrepreneuriale.info.price.value': '5 500 FCFA',
+
+    // CTA
+    'seanceEntrepreneuriale.cta.reserve': 'Réserver ma place',
+    'seanceEntrepreneuriale.cta.reservePrice': 'Réserver ma place - 5 500 FCFA',
+    'seanceEntrepreneuriale.cta.payment': 'Paiement sécurisé via MP Group',
+
+    // Ce que c'est
+    'seanceEntrepreneuriale.about.eyebrow': 'Ce que c’est',
+    'seanceEntrepreneuriale.about.title': 'Tu ne viens pas seulement écouter.',
+    'seanceEntrepreneuriale.about.subtitle': 'Tu viens construire.',
+    'seanceEntrepreneuriale.about.description1': 'Un atelier intensif de 3 heures, en petit groupe de 20 personnes maximum, pour structurer ton idée et repartir avec un plan d’action concret.',
+    'seanceEntrepreneuriale.about.description2': 'Nous t’aidons à surpasser tes peurs, à clarifier ta pensée, et à mieux comprendre ce que ton idée peut vraiment devenir.',
+    'seanceEntrepreneuriale.about.highlight.title': 'Ce n’est pas une conférence où tu écoutes passivement.',
+    'seanceEntrepreneuriale.about.highlight.text': 'C’est un espace de travail où tu construis, avec un accompagnement direct et personnalisé, la première version solide de ton projet.',
+
+    // Pourquoi ce format fonctionne
+    'seanceEntrepreneuriale.why.eyebrow': 'Pourquoi ce format fonctionne',
+    'seanceEntrepreneuriale.why.title': 'Petit groupe. Peu de théorie. Beaucoup d’action.',
+    'seanceEntrepreneuriale.why.description': 'Tout est pensé pour que tu avances réellement pendant ces trois heures.',
+
+    'seanceEntrepreneuriale.why.group.title': 'Un groupe volontairement restreint',
+    'seanceEntrepreneuriale.why.group.text': 'À 20 personnes maximum, tu n’es pas un visage anonyme dans une salle bondée. Tu es écoutée, guidée et challengée individuellement pendant les 3 heures.',
+
+    'seanceEntrepreneuriale.why.duration.title': 'Un format court et efficace',
+    'seanceEntrepreneuriale.why.duration.text': 'Pas besoin de bloquer ton emploi du temps pendant des semaines. Un après-midi suffit pour poser les fondations solides de ton projet et sortir avec une direction claire.',
+
+    'seanceEntrepreneuriale.why.result.title': 'Un résultat concret',
+    'seanceEntrepreneuriale.why.result.text': 'Chaque participant repart avec un document de travail rempli, une idée reformulée avec précision et un plan d’action pour les 30 jours suivants.',
+
+    'seanceEntrepreneuriale.why.experience.title': 'Un accompagnement expérimenté',
+    'seanceEntrepreneuriale.why.experience.text': 'La séance est animée par Marveen Promise, fondatrice de MP GROUP, qui accompagne aujourd’hui les jeunes porteurs de projets à passer concrètement à l’action.',
+
+    // Pour qui
+    'seanceEntrepreneuriale.audience.eyebrow': 'Pour qui',
+    'seanceEntrepreneuriale.audience.title': 'Tu as une idée. Mais tu ne sais pas encore par où commencer ?',
+
+    'seanceEntrepreneuriale.audience.entrepreneurs': 'Entrepreneurs en devenir',
+    'seanceEntrepreneuriale.audience.active': 'Jeunes actifs',
+    'seanceEntrepreneuriale.audience.project': 'Porteurs de projets',
+    'seanceEntrepreneuriale.audience.idea': 'Toute personne qui veut transformer une intuition en démarche structurée',
+
+    // Ce que tu repars avec
+    'seanceEntrepreneuriale.results.eyebrow': 'À la fin des 3 heures',
+    'seanceEntrepreneuriale.results.title': 'Tu ne repars pas avec seulement des notes.',
+    'seanceEntrepreneuriale.results.description': 'Tu repars avec les premiers éléments concrets de ton projet.',
+
+    'seanceEntrepreneuriale.results.idea.title': 'Ton idée clairement formulée',
+    'seanceEntrepreneuriale.results.idea.text': 'Ton idée formulée clairement et sans ambiguïté.',
+
+    'seanceEntrepreneuriale.results.market.title': 'Ton premier marché identifié',
+    'seanceEntrepreneuriale.results.market.text': 'Ton client ou marché cible identifié avec davantage de précision.',
+
+    'seanceEntrepreneuriale.results.plan.title': 'Ton plan d’action de 30 jours',
+    'seanceEntrepreneuriale.results.plan.text': 'Une feuille de route concrète pour savoir quoi faire après la séance.',
+
+    // Pourquoi maintenant
+    'seanceEntrepreneuriale.whyNow.eyebrow': 'Pourquoi maintenant ?',
+    'seanceEntrepreneuriale.whyNow.title': 'Ton idée ne deviendra pas un projet simplement parce que tu y penses encore.',
+    'seanceEntrepreneuriale.whyNow.description': 'Elle deviendra un projet lorsque tu commenceras à lui donner une forme, une direction et des premières actions.',
+    'seanceEntrepreneuriale.whyNow.highlight': 'D’ici là, il ne manque qu’une chose : commencer.',
+
+    // Informations pratiques
+    'seanceEntrepreneuriale.practical.eyebrow': 'Informations pratiques',
+    'seanceEntrepreneuriale.practical.title': 'Tout ce qu’il faut savoir.',
+    'seanceEntrepreneuriale.practical.duration': 'Durée',
+    'seanceEntrepreneuriale.practical.places': 'Places',
+    'seanceEntrepreneuriale.practical.price': 'Tarif',
+    'seanceEntrepreneuriale.practical.nextSession': 'Prochaine session',
+    'seanceEntrepreneuriale.practical.hostedBy': 'Animé par',
+
+    'seanceEntrepreneuriale.practical.hostDescription': 'Fondatrice de MP GROUP, Marveen Promise a coordonné des événements pour des dirigeants africains et des institutions internationales. Elle accompagne aujourd’hui les jeunes porteurs de projets à passer concrètement à l’action.',
+
+    // CTA final
+    'seanceEntrepreneuriale.final.places': '20 places maximum',
+    'seanceEntrepreneuriale.final.title': 'Ton projet commence maintenant.',
+    'seanceEntrepreneuriale.final.description': 'Les places sont limitées à 20 participants pour garantir un accompagnement de qualité. Réserve la tienne dès maintenant.',
   },
   en: {
     // Navigation
@@ -694,6 +794,102 @@ const translations = {
     'admin.avis.error.reject': 'Error rejecting the review.',
     'admin.avis.error.delete': 'Error deleting the review.',
     'admin.avis.error.update': 'Error updating the setting.',
+
+    // D'ICI LÀ — Entrepreneurial Session
+    'seanceEntrepreneuriale.seo.title': 'Entrepreneurial Session | MP GROUP',
+    'seanceEntrepreneuriale.seo.description': 'An intensive 3-hour entrepreneurial session designed to turn your idea into a concrete project and leave with a 30 days action plan.',
+
+    // Hero
+    'seanceEntrepreneuriale.hero.badge': 'Entrepreneurial Session',
+    'seanceEntrepreneuriale.hero.title1': 'UNTIL',
+    'seanceEntrepreneuriale.hero.title2': 'THEN',
+    'seanceEntrepreneuriale.hero.subtitle': 'From the beginning to the project.',
+    'seanceEntrepreneuriale.hero.description': 'There is the idea you have been carrying for months. There is the project it could become. From here to there, only one thing is missing: START.',
+    'seanceEntrepreneuriale.hero.hours': 'hours',
+    'seanceEntrepreneuriale.hero.visual': 'Move from an idea to the first solid version of your project.',
+
+    // Quick information
+    'seanceEntrepreneuriale.info.date': 'SEPTEMBER 9, 2026',
+    'seanceEntrepreneuriale.info.duration': '3 HOURS',
+    'seanceEntrepreneuriale.info.places': '20 PLACES',
+    'seanceEntrepreneuriale.info.price.label': 'Only',
+    'seanceEntrepreneuriale.info.price.value': '5,500 FCFA',
+
+    // CTA
+    'seanceEntrepreneuriale.cta.reserve': 'Reserve my place',
+    'seanceEntrepreneuriale.cta.reservePrice': 'Reserve my place - 5,500 FCFA',
+    'seanceEntrepreneuriale.cta.payment': 'Secure payment via MP Group',
+
+    // What it is
+    'seanceEntrepreneuriale.about.eyebrow': 'What it is',
+    'seanceEntrepreneuriale.about.title': 'You are not just coming to listen.',
+    'seanceEntrepreneuriale.about.subtitle': 'You are coming to build.',
+    'seanceEntrepreneuriale.about.description1': 'An intensive 3 hours workshop, in a small group of no more than 20 people, designed to structure your idea and leave with a concrete action plan.',
+    'seanceEntrepreneuriale.about.description2': 'We help you overcome your fears, clarify your thinking, and better understand what your idea could truly become.',
+    'seanceEntrepreneuriale.about.highlight.title': 'This is not a conference where you passively listen.',
+    'seanceEntrepreneuriale.about.highlight.text': 'It is a working space where you build, with direct and personalized guidance, the first solid version of your project.',
+
+    // Why this format works
+    'seanceEntrepreneuriale.why.eyebrow': 'Why this format works',
+    'seanceEntrepreneuriale.why.title': 'Small group. Less theory. More action.',
+    'seanceEntrepreneuriale.why.description': 'Everything is designed to help you make real progress during these three hours.',
+
+    'seanceEntrepreneuriale.why.group.title': 'A deliberately small group',
+    'seanceEntrepreneuriale.why.group.text': 'With a maximum of 20 participants, you are not just another face in a crowded room. You are heard, guided and personally challenged throughout the 3 hours.',
+
+    'seanceEntrepreneuriale.why.duration.title': 'A short and efficient format',
+    'seanceEntrepreneuriale.why.duration.text': 'No need to block your schedule for weeks. One afternoon is enough to lay solid foundations for your project and leave with a clear direction.',
+
+    'seanceEntrepreneuriale.why.result.title': 'A concrete outcome',
+    'seanceEntrepreneuriale.why.result.text': 'Every participant leaves with a completed working document, a clearly rephrased idea and a 30-day action plan.',
+
+    'seanceEntrepreneuriale.why.experience.title': 'Experienced guidance',
+    'seanceEntrepreneuriale.why.experience.text': 'The session is led by Marveen Promise, founder of MP GROUP, who currently helps young project owners move from ideas to concrete action.',
+
+    // Who it is for
+    'seanceEntrepreneuriale.audience.eyebrow': 'Who it’s for',
+    'seanceEntrepreneuriale.audience.title': 'You have an idea. But you don’t know where to start?',
+
+    'seanceEntrepreneuriale.audience.entrepreneurs': 'Aspiring entrepreneurs',
+    'seanceEntrepreneuriale.audience.active': 'Young professionals',
+    'seanceEntrepreneuriale.audience.project': 'Project owners',
+    'seanceEntrepreneuriale.audience.idea': 'Anyone who wants to turn an intuition into a structured approach',
+
+    // What you leave with
+    'seanceEntrepreneuriale.results.eyebrow': 'After the 3 hours',
+    'seanceEntrepreneuriale.results.title': 'You won’t leave with just notes.',
+    'seanceEntrepreneuriale.results.description': 'You’ll leave with the first concrete building blocks of your project.',
+
+    'seanceEntrepreneuriale.results.idea.title': 'A clearly defined idea',
+    'seanceEntrepreneuriale.results.idea.text': 'Your idea clearly formulated without ambiguity.',
+
+    'seanceEntrepreneuriale.results.market.title': 'Your first target market',
+    'seanceEntrepreneuriale.results.market.text': 'A clearer understanding of your target customer or market.',
+
+    'seanceEntrepreneuriale.results.plan.title': 'Your 30 days action plan',
+    'seanceEntrepreneuriale.results.plan.text': 'A concrete roadmap showing you what to do after the session.',
+
+    // Why now
+    'seanceEntrepreneuriale.whyNow.eyebrow': 'Why now?',
+    'seanceEntrepreneuriale.whyNow.title': 'Your idea won’t become a project simply because you keep thinking about it.',
+    'seanceEntrepreneuriale.whyNow.description': 'It becomes a project when you start giving it shape, direction and concrete first actions.',
+    'seanceEntrepreneuriale.whyNow.highlight': 'From here to there, only one thing is missing: start.',
+
+    // Practical information
+    'seanceEntrepreneuriale.practical.eyebrow': 'Practical information',
+    'seanceEntrepreneuriale.practical.title': 'Everything you need to know.',
+    'seanceEntrepreneuriale.practical.duration': 'Duration',
+    'seanceEntrepreneuriale.practical.places': 'Places',
+    'seanceEntrepreneuriale.practical.price': 'Price',
+    'seanceEntrepreneuriale.practical.nextSession': 'Next session',
+    'seanceEntrepreneuriale.practical.hostedBy': 'Led by',
+
+    'seanceEntrepreneuriale.practical.hostDescription': 'Founder of MP GROUP, Marveen Promise has coordinated events for African leaders and international institutions. Today, she helps young project owners move from ideas to concrete action.',
+
+    // Final CTA
+    'seanceEntrepreneuriale.final.places': '20 places maximum',
+    'seanceEntrepreneuriale.final.title': 'Your project starts now.',
+    'seanceEntrepreneuriale.final.description': 'Places are limited to 20 participants to guarantee quality guidance. Reserve yours now.',
   }
 }
 
