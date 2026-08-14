@@ -34,6 +34,7 @@ import { ProtectedRoute, PublicOnlyRoute } from './components/auth/ProtectedRout
 import { CookieConsent } from './components/ui/CookieConsent'
 import ManageAvis from './pages/admin/ManageAvis'
 import ManageEvenements from './pages/admin/ManageEvenements'
+import SeanceEntrepreneuriale from "@/pages/SeanceEntrepreneuriale";
 
 
 // Scroll to top component
@@ -382,6 +383,13 @@ const adminEvenementsRoute = createRoute({
   ),
 })
 
+
+const SeanceEntrepreneurialeRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/Seance-Entrepreneuriale",
+  component: SeanceEntrepreneuriale,
+});
+
 // Create route tree
 const routeTree = rootRoute.addChildren([
   indexRoute,
@@ -410,6 +418,7 @@ const routeTree = rootRoute.addChildren([
   adminNewsEditRoute,
   avisManagerRoute,
   adminEvenementsRoute,
+  SeanceEntrepreneurialeRoute,
 ])
 
 // Create router
