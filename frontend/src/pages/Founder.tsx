@@ -93,7 +93,7 @@ export default function Founder() {
                                     <p className="text-lg text-justify text-gray-700 leading-relaxed font-light">
                                         {t('founder.bio.business')}
                                     </p>
-                                    <p className="text-lg text-justify text-gray-700 leading-relaxed font-light">
+                                    <p className="text-lg text-justify text-gray-700 leading-relaxed font-light whitespace-pre-line">
                                         {t('founder.bio.experience')}
                                     </p>
                                 </div>
