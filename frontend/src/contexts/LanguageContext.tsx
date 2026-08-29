@@ -374,12 +374,12 @@ const translations = {
     'seanceEntrepreneuriale.info.date': '9 SEPTEMBRE 2026',
     'seanceEntrepreneuriale.info.duration': '3 HEURES',
     'seanceEntrepreneuriale.info.places': '20 PLACES',
-    'seanceEntrepreneuriale.info.price.label': 'Seulement',
-    'seanceEntrepreneuriale.info.price.value': '5 500 FCFA',
+    'seanceEntrepreneuriale.info.price.label': ' ',
+    'seanceEntrepreneuriale.info.price.value': 'SOLD OUT',
 
     // CTA
     'seanceEntrepreneuriale.cta.reserve': 'Réserver ma place',
-    'seanceEntrepreneuriale.cta.reservePrice': 'Réserver ma place - 5 500 FCFA',
+    'seanceEntrepreneuriale.cta.reservePrice': 'SOLD OUT',
     'seanceEntrepreneuriale.cta.payment': 'Paiement sécurisé via MP Group',
 
     // Ce que c'est
@@ -812,12 +812,12 @@ const translations = {
     'seanceEntrepreneuriale.info.date': 'SEPTEMBER 9, 2026',
     'seanceEntrepreneuriale.info.duration': '3 HOURS',
     'seanceEntrepreneuriale.info.places': '20 PLACES',
-    'seanceEntrepreneuriale.info.price.label': 'Only',
+    'seanceEntrepreneuriale.info.price.label': ' ',
     'seanceEntrepreneuriale.info.price.value': '5,500 FCFA',
 
     // CTA
     'seanceEntrepreneuriale.cta.reserve': 'Reserve my place',
-    'seanceEntrepreneuriale.cta.reservePrice': 'Reserve my place - 5,500 FCFA',
+    'seanceEntrepreneuriale.cta.reservePrice': 'SOLD OUT',
     'seanceEntrepreneuriale.cta.payment': 'Secure payment via MP Group',
 
     // What it is
