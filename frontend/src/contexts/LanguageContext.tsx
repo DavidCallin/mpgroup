@@ -374,12 +374,12 @@ const translations = {
     'seanceEntrepreneuriale.info.date': '9 SEPTEMBRE 2026',
     'seanceEntrepreneuriale.info.duration': '3 HEURES',
     'seanceEntrepreneuriale.info.places': '20 PLACES',
-    'seanceEntrepreneuriale.info.price.label': ' ',
-    'seanceEntrepreneuriale.info.price.value': 'SOLD OUT',
+    'seanceEntrepreneuriale.info.price.label': 'Reserver ma place',
+    'seanceEntrepreneuriale.info.price.value': 'Reserver ma place 5 500 FCFA',
 
     // CTA
     'seanceEntrepreneuriale.cta.reserve': 'Réserver ma place',
-    'seanceEntrepreneuriale.cta.reservePrice': 'SOLD OUT',
+    'seanceEntrepreneuriale.cta.reservePrice': 'Reserver ma place 5 500 FCFA',
     'seanceEntrepreneuriale.cta.payment': 'Paiement sécurisé via MP Group',
 
     // Ce que c'est
@@ -817,7 +817,7 @@ const translations = {
 
     // CTA
     'seanceEntrepreneuriale.cta.reserve': 'Reserve my place',
-    'seanceEntrepreneuriale.cta.reservePrice': 'SOLD OUT',
+    'seanceEntrepreneuriale.cta.reservePrice': 'Reserve my place 5,500 FCFA',
     'seanceEntrepreneuriale.cta.payment': 'Secure payment via MP Group',
 
     // What it is

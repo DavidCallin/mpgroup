@@ -14,12 +14,12 @@ import {
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const MAKETOU_URL = "";
+const MAKETOU_URL = "https://marveen-promise.mymaketou.shop/fr/products/soutenir-mpbrioche/checkout";
 // https://marveen-promise.mymaketou.shop/fr/products/soutenir-mpbrioche/checkout 
 
 // --- Statut de la session ---
 // Passe à false dès que les places du 20 septembre sont ouvertes à la réservation
-const IS_SOLD_OUT = true;
+const IS_SOLD_OUT = false;
 const NEXT_SESSION_LABEL = "10 Septembre";
 
 const fadeUp = {
