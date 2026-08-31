@@ -371,7 +371,7 @@ const translations = {
     'seanceEntrepreneuriale.hero.visual': 'Pour passer de l’idée à une première version solide de ton projet.',
 
     // Informations rapides
-    'seanceEntrepreneuriale.info.date': '9 SEPTEMBRE 2026',
+    'seanceEntrepreneuriale.info.date': '10 SEPTEMBRE 2026',
     'seanceEntrepreneuriale.info.duration': '3 HEURES',
     'seanceEntrepreneuriale.info.places': '20 PLACES',
     'seanceEntrepreneuriale.info.price.label': 'Reserver ma place',
@@ -809,7 +809,7 @@ const translations = {
     'seanceEntrepreneuriale.hero.visual': 'Move from an idea to the first solid version of your project.',
 
     // Quick information
-    'seanceEntrepreneuriale.info.date': 'SEPTEMBER 9, 2026',
+    'seanceEntrepreneuriale.info.date': 'SEPTEMBER 10, 2026',
     'seanceEntrepreneuriale.info.duration': '3 HOURS',
     'seanceEntrepreneuriale.info.places': '20 PLACES',
     'seanceEntrepreneuriale.info.price.label': ' ',
