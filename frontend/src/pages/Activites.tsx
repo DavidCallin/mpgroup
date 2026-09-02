@@ -6,7 +6,7 @@ import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 // ============================================================
-// Liste des activités — ajoute un objet ici pour chaque nouvelle
+// Liste des activités - ajoute un objet ici pour chaque nouvelle
 // formation / conférence / atelier organisé par MP GROUP.
 // ============================================================
 type ActivityStatus = "a_venir" | "complet" | "termine";
@@ -28,22 +28,22 @@ const activities: Activity[] = [
   {
     slug: "seance-entrepreneuriale",
     route: "/seance-entrepreneuriale",
-    title: "D'ici là — Séance Entrepreneuriale",
+    title: "D'ici là - Séance Entrepreneuriale",
     category: "Atelier",
     description:
       "Un atelier intensif de 3 heures, en petit groupe, pour structurer ton idée et repartir avec un plan d'action concret.",
-    date: "20 Septembre",
+    date: "10 Septembre",
     duration: "3 heures",
     capacity: "20 personnes max",
-    status: "complet",
+    status: "a_venir",
   },
   {
     slug: "promise-lab",
     route: "/promise-lab",
-    title: "Promise Lab — Bureautique Essentielle",
+    title: "Promise Lab - Bureautique Essentielle",
     category: "Formation",
     description:
-      "Quatre séances pour maîtriser Mail, Drive, Docs et Excel — le minimum administratif pour démarrer un projet avec crédibilité.",
+      "Quatre séances pour maîtriser Mail, Drive, Docs et Excel - le minimum administratif pour démarrer un projet avec crédibilité.",
     date: "Prochaine cohorte : Octobre",
     duration: "1h30 / séance, 4 semaines",
     capacity: "15 personnes max",
