@@ -44,7 +44,7 @@ const activities: Activity[] = [
     category: "Formation",
     description:
       "Quatre séances pour maîtriser Mail, Drive, Docs et Excel - le minimum administratif pour démarrer un projet avec crédibilité.",
-    date: "Prochaine cohorte : Octobre",
+    date: "Prochaine cohorte : Novembre",
     duration: "1h30 / séance, 4 semaines",
     capacity: "15 personnes max",
     status: "a_venir",
