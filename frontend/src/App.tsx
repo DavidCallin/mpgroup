@@ -35,6 +35,9 @@ import { CookieConsent } from './components/ui/CookieConsent'
 import ManageAvis from './pages/admin/ManageAvis'
 import ManageEvenements from './pages/admin/ManageEvenements'
 import SeanceEntrepreneuriale from "@/pages/SeanceEntrepreneuriale";
+import Activites from './pages/Activites'
+import PromiseLab from './pages/PromiseLab'
+
 
 
 // Scroll to top component
@@ -383,6 +386,28 @@ const adminEvenementsRoute = createRoute({
   ),
 })
 
+const activitesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/activites',
+  component: () => (
+    <>
+      <ScrollToTop />
+      <Activites />
+    </>
+  ),
+})
+
+const promiseLabRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/promise-lab',
+  component: () => (
+    <>
+      <ScrollToTop />
+      <PromiseLab />
+    </>
+  ),
+})
+
 
 const SeanceEntrepreneurialeRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -419,6 +444,8 @@ const routeTree = rootRoute.addChildren([
   avisManagerRoute,
   adminEvenementsRoute,
   SeanceEntrepreneurialeRoute,
+  activitesRoute,
+  promiseLabRoute,
 ])
 
 // Create router

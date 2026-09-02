@@ -33,7 +33,8 @@ export function Navbar() {
     '/admin/login',
     '/admin/forgot-password',
     '/admin/reset-link-sent',
-    '/admin/reset-password'
+    '/admin/reset-password',
+    '/activites',
   ]
   
   const isValidRoute = validRoutes.includes(location.pathname) || 
@@ -52,6 +53,7 @@ export function Navbar() {
     { name: t('nav.news'), to: '/news' },
     { name: t('nav.contact'), to: '/contact' },
     { name: t('nav.avis'), to: '/avis' },
+    { name: 'Activités', to: '/activites' },
   ]
 
   useEffect(() => {
