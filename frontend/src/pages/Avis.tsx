@@ -62,17 +62,28 @@ export default function Avis() {
 
       {/* Formulaire */}
       <form onSubmit={handleSubmit} className="space-y-4 mb-16 border p-6">
-        <select
-          required
-          value={formData.evenement_id ?? ''}
-          onChange={(e) => setFormData({ ...formData, evenement_id: Number(e.target.value) })}
-          className="w-full border p-2"
-        >
-          <option value="">Sélectionnez l'événement</option>
-          {evenements?.map((ev) => (
-            <option key={ev.id} value={ev.id}>{ev.nom}</option>
-          ))}
-        </select>
+        <div>
+          <p className="mb-2 text-sm font-medium">Sélectionnez l'événement</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {evenements?.map((ev) => {
+              const isSelected = formData.evenement_id === ev.id
+              return (
+                <button
+                  key={ev.id}
+                  type="button"
+                  onClick={() => setFormData({ ...formData, evenement_id: ev.id })}
+                  className={`border p-3 text-left text-sm transition-colors ${
+                    isSelected
+                      ? 'border-[#001A4D] bg-[#001A4D] text-[#EAB12D] font-semibold'
+                      : 'border-gray-300 hover:border-[#001A4D]'
+                  }`}
+                >
+                  {ev.nom}
+                </button>
+              )
+            })}
+          </div>
+        </div>
 
         <input
           required
