@@ -14,8 +14,13 @@ import {
 import { SEO } from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const MAKETOU_URL = "";
+const MAKETOU_URL = "https://marveen-promise.mymaketou.shop/fr/products/soutenir-mpbrioche/checkout";
 // https://marveen-promise.mymaketou.shop/fr/products/soutenir-mpbrioche/checkout 
+
+// --- Statut de la session ---
+// Passe à false dès que les places du 20 septembre sont ouvertes à la réservation
+const IS_SOLD_OUT = false;
+const NEXT_SESSION_LABEL = "10 Septembre";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -43,6 +48,21 @@ function PrimaryButton({
 }: {
   children: React.ReactNode;
 }) {
+  if (IS_SOLD_OUT) {
+    return (
+      <span
+        className="inline-flex cursor-not-allowed items-center justify-center gap-3 px-7 py-4 text-sm font-bold uppercase tracking-[0.12em] opacity-100 transition-all duration-300"
+        style={{
+          backgroundColor: "#EAB12D",
+          color: "#001A4D",
+        }}
+        aria-disabled="true"
+      >
+        {children}
+      </span>
+    )
+  }
+
   return (
     <a
       href={MAKETOU_URL}
@@ -62,6 +82,36 @@ function PrimaryButton({
       />
     </a>
   );
+}
+
+function SoldOutNotice() {
+  if (!IS_SOLD_OUT) return null
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="flex flex-col items-center gap-2 border px-6 py-4 text-center sm:flex-row sm:gap-4 sm:text-left"
+      style={{
+        borderColor: "rgba(234,177,45,0.4)",
+        backgroundColor: "rgba(234,177,45,0.08)",
+      }}
+    >
+      <span
+        className="shrink-0 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em]"
+        style={{ backgroundColor: "#EAB12D", color: "#001A4D" }}
+      >
+        SOLD OUT
+      </span>
+      <span className="text-sm" style={{ color: "#FFFFFF" }}>
+        La séance du 9 septembre affiche complet.{" "}
+        <strong style={{ color: "#EAB12D" }}>
+          Prochaine ouverture : {NEXT_SESSION_LABEL}
+        </strong>
+      </span>
+    </motion.div>
+  )
 }
 
 function SectionTitle({
@@ -253,16 +303,20 @@ export default function SeanceEntrepreneuriale() {
                   {t("seanceEntrepreneuriale.hero.description")}
                 </motion.p>
 
+                <motion.div variants={fadeUp} className="mt-8">
+                  <SoldOutNotice />
+                </motion.div>
+
                 <motion.div
                   variants={fadeUp}
-                  className="mt-10 flex flex-wrap gap-3"
+                  className="mt-8 flex flex-wrap gap-3"
                 >
                   <div className="flex items-center gap-2 border px-4 py-3 text-sm text-white">
                     <CalendarDays
                       size={17}
                       style={{ color: "#EAB12D" }}
                     />
-                    {t("seanceEntrepreneuriale.info.date")}
+                    {IS_SOLD_OUT ? `Prochaine ouverture : ${NEXT_SESSION_LABEL}` : t("seanceEntrepreneuriale.info.date")}
                   </div>
 
                   <div className="flex items-center gap-2 border px-4 py-3 text-sm text-white">
@@ -284,7 +338,7 @@ export default function SeanceEntrepreneuriale() {
 
                 <motion.div variants={fadeUp} className="mt-10">
                   <PrimaryButton>
-                    {t("seanceEntrepreneuriale.cta.reservePrice")}
+                    {IS_SOLD_OUT ? "SOLD OUT" : t("seanceEntrepreneuriale.cta.reservePrice")}
                   </PrimaryButton>
                 </motion.div>
               </motion.div>
@@ -351,14 +405,14 @@ export default function SeanceEntrepreneuriale() {
                   }}
                 >
                   <span className="block text-xs font-bold uppercase tracking-widest">
-                    {t("seanceEntrepreneuriale.info.price.label")}
+                    {IS_SOLD_OUT ? "Prochaine ouverture" : t("seanceEntrepreneuriale.info.price.label")}
                   </span>
 
                   <span
                     className="block text-3xl font-bold"
                     style={{ fontFamily: "var(--font-heading)" }}
                   >
-                    SOLD OUT
+                    {IS_SOLD_OUT ? NEXT_SESSION_LABEL : "5 500 FCFA"}
                   </span>
                 </div>
               </motion.div>
@@ -499,7 +553,7 @@ export default function SeanceEntrepreneuriale() {
             <center>
                 <motion.div variants={fadeUp} className="mt-10">
                   <PrimaryButton>
-                    {t("seanceEntrepreneuriale.cta.reservePrice")}
+                    {IS_SOLD_OUT ? "SOLD OUT" : t("seanceEntrepreneuriale.cta.reservePrice")}
                   </PrimaryButton>
                 </motion.div>
             </center>
@@ -622,7 +676,7 @@ export default function SeanceEntrepreneuriale() {
             <center>
                 <motion.div variants={fadeUp} className="mt-10">
                   <PrimaryButton>
-                    {t("seanceEntrepreneuriale.cta.reservePrice")}
+                    {IS_SOLD_OUT ? "SOLD OUT" : t("seanceEntrepreneuriale.cta.reservePrice")}
                   </PrimaryButton>
                 </motion.div>
             </center>
@@ -710,12 +764,12 @@ export default function SeanceEntrepreneuriale() {
                 },
                 {
                   label: t("seanceEntrepreneuriale.practical.price"),
-                  value: "SOLD OUT",
+                  value: "5 500 FCFA",
                   icon: Sparkles,
                 },
                 {
                   label: t("seanceEntrepreneuriale.practical.nextSession"),
-                  value: t("seanceEntrepreneuriale.info.date"),
+                  value: IS_SOLD_OUT ? NEXT_SESSION_LABEL : t("seanceEntrepreneuriale.info.date"),
                   icon: CalendarDays,
                 },
               ].map((item) => {
@@ -809,7 +863,7 @@ export default function SeanceEntrepreneuriale() {
                 className="text-xs font-bold uppercase tracking-[0.3em]"
                 style={{ color: "#EAB12D" }}
               >
-                {t("seanceEntrepreneuriale.final.places")}
+                {IS_SOLD_OUT ? "Prochaine ouverture" : t("seanceEntrepreneuriale.final.places")}
               </span>
 
               <h2
@@ -819,19 +873,21 @@ export default function SeanceEntrepreneuriale() {
                   fontFamily: "var(--font-heading)",
                 }}
               >
-                {t("seanceEntrepreneuriale.final.title")}
+                {IS_SOLD_OUT ? NEXT_SESSION_LABEL : t("seanceEntrepreneuriale.final.title")}
               </h2>
 
               <p
                 className="mx-auto mt-8 max-w-2xl text-lg leading-8"
                 style={{ color: "rgba(255,255,255,0.68)" }}
               >
-                {t("seanceEntrepreneuriale.final.description")}
+                {IS_SOLD_OUT
+                  ? "La session du 9 septembre est complète. Reviens sur cette page ou suis nos réseaux pour être averti dès l'ouverture des réservations du 20 septembre."
+                  : t("seanceEntrepreneuriale.final.description")}
               </p>
 
               <div className="mt-10 flex flex-col items-center gap-5">
                 <PrimaryButton>
-                  {t("seanceEntrepreneuriale.cta.reservePrice")}
+                  {IS_SOLD_OUT ? "SOLD OUT" : t("seanceEntrepreneuriale.cta.reservePrice")}
                 </PrimaryButton>
 
                 <span

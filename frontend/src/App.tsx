@@ -411,8 +411,16 @@ const promiseLabRoute = createRoute({
 
 const SeanceEntrepreneurialeRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/Seance-Entrepreneuriale",
-  component: SeanceEntrepreneuriale,
+  path: '/seance-entrepreneuriale',
+  validateSearch: (search: Record<string, unknown>) => ({
+    session: search.session ? String(search.session) : undefined,
+  }),
+  component: () => (
+    <>
+      <ScrollToTop />
+      <SeanceEntrepreneuriale />
+    </>
+  ),
 });
 
 // Create route tree

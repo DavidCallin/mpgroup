@@ -1,0 +1,26 @@
+[
+  {
+    "id": "2026-09-09",
+    "date": "9 Septembre 2026",
+    "lieu": "MP GROUP, Womey, 4ème rue à gauche, après  le CEG Plateau",
+    "etat": "sold_out",
+    "heure": "10h30 - 12h30",
+    "places_disponibles": 0,
+    "places_totales": 20,
+    "lien_inscription": "",
+    "visible": true,
+    "objet_pratique": "Cahier, stylo"
+  },
+  {
+    "id": "2026-09-10",
+    "date": "10 Septembre 2026",
+    "lieu": "MP GROUP, Womey, 4ème rue à gauche, après  le CEG Plateau",
+    "etat": "en_cours",
+    "heure": "10h30 - 12h30",
+    "places_disponibles": 20,
+    "places_totales": 20,
+    "lien_inscription": "https://marveen-promise.mymaketou.shop/fr/products/soutenir-mpbrioche/checkout",
+    "visible": true,
+    "objet_pratique": "Cahier, stylo"
+  }
+]
