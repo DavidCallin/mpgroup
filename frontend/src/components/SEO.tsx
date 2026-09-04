@@ -18,9 +18,9 @@ interface SEOProps {
 export function SEO({
   title = 'MP GROUP | Conseil Stratégique & Événementiel Institutionnel',
   description = 'MP GROUP accompagne les institutions et organisations en Afrique de l\'Ouest avec des services premium d\'événementiel stratégique, conseil institutionnel et partenariats d\'excellence.',
-  image = 'https://mpgroupcompany.com/og-image.jpg',
+  image = 'https://mpgroupcompany.com/logo_MP_GROUP.png',
   type = 'website',
-  keywords = 'conseil stratégique, événementiel institutionnel, Afrique, Côte d\'Ivoire',
+  keywords = 'conseil stratégique, événementiel institutionnel, Afrique, Bénin',
   aggregateRating,
 }: SEOProps) {
   const location = useLocation()
@@ -70,7 +70,7 @@ export function SEO({
         '@type': 'Organization',
         name: 'MP GROUP',
         url: 'https://mpgroupcompany.com/',
-        logo: 'https://mpgroupcompany.com/logo.png',
+        logo: 'https://mpgroupcompany.com/logo_MP_GROUP.png',
         aggregateRating: {
           '@type': 'AggregateRating',
           ratingValue: aggregateRating.ratingValue,

@@ -72,8 +72,8 @@ export function Footer() {
             <li className="flex items-start gap-3 sm:gap-4 text-xs sm:text-sm">
               <MapPin size={18} className="text-secondary shrink-0 sm:w-5 sm:h-5" />
               <span className="text-white/70 leading-relaxed">
-                Haie vive<br />
-                Cotonou, Bénin
+                 Calavi - Womey, Bénin<br />
+                4ème rue à gauche après le CEG plateau
               </span>
             </li>
             <li className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm">

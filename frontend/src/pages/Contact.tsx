@@ -127,7 +127,7 @@ export default function Contact() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {[
-                { icon: MapPin, title: "Siège Social", detail: "Haie Vive, Cotonou, Bénin", isAddress: true },
+                { icon: MapPin, title: "Siège Social", detail: "Calavi - Womey, Bénin | 4ème rue à gauche après le CEG plateau", isAddress: true },
                 { icon: Phone, title: "Téléphone", detail: "+229 01 67 27 06 36" },
                 { icon: Mail, title: "Email", detail: "mpgroupcompany1@gmail.com" }
               ].map((item, idx) => (

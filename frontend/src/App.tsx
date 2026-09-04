@@ -36,7 +36,7 @@ import ManageAvis from './pages/admin/ManageAvis'
 import ManageEvenements from './pages/admin/ManageEvenements'
 import SeanceEntrepreneuriale from "@/pages/SeanceEntrepreneuriale";
 import Activites from './pages/Activites'
-import PromiseLab from './pages/PromiseLab'
+import BureautiqueEssentielle from './pages/BureautiqueEssentielle'
 
 
 
@@ -397,13 +397,13 @@ const activitesRoute = createRoute({
   ),
 })
 
-const promiseLabRoute = createRoute({
+const BureautiqueEssentielleRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/promise-lab',
+  path: '/BureautiqueEssentielle',
   component: () => (
     <>
       <ScrollToTop />
-      <PromiseLab />
+      <BureautiqueEssentielle />
     </>
   ),
 })
@@ -453,7 +453,7 @@ const routeTree = rootRoute.addChildren([
   adminEvenementsRoute,
   SeanceEntrepreneurialeRoute,
   activitesRoute,
-  promiseLabRoute,
+  BureautiqueEssentielleRoute,
 ])
 
 // Create router

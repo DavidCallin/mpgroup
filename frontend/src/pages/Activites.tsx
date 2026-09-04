@@ -41,14 +41,14 @@ const seances = seancesData as Seance[];
 
 const staticActivities: StaticActivity[] = [
   {
-    slug: "promise-lab",
-    route: "/promise-lab",
-    titleKey: "activites.promiseLab.title",
+    slug: "BureautiqueEssentielle",
+    route: "/BureautiqueEssentielle",
+    titleKey: "activites.BureautiqueEssentielle.title",
     categoryKey: "activites.category.formation",
-    descriptionKey: "activites.promiseLab.description",
-    dateKey: "activites.promiseLab.date",
-    durationKey: "activites.promiseLab.duration",
-    capacityKey: "activites.promiseLab.capacity",
+    descriptionKey: "activites.BureautiqueEssentielle.description",
+    dateKey: "activites.BureautiqueEssentielle.date",
+    durationKey: "activites.BureautiqueEssentielle.duration",
+    capacityKey: "activites.BureautiqueEssentielle.capacity",
     status: "a_venir",
     visible: true,
   },
@@ -219,7 +219,8 @@ export default function Activites() {
             staticActivities.filter((a) => a.visible).length === 0 ? (
               <div className="py-20 text-center">
                 <p className="text-lg" style={{ color: "#667085" }}>
-                  {t("activites.empty")}
+                  {t("activites.empty")} 
+                  
                 </p>
               </div>
             ) : (
