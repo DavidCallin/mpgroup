@@ -183,7 +183,7 @@ export default function Activites() {
               className="max-w-3xl"
             >
               <motion.div variants={fadeUp} className="mb-5 flex items-center gap-3">
-                <span className="h-px w-10" style={{ backgroundColor: "#EAB12D" }} />
+                {/* <span className="h-px w-10" style={{ backgroundColor: "#EAB12D" }} /> */}
                 <span
                   className="text-xs font-bold uppercase tracking-[0.25em]"
                   style={{ color: "#EAB12D" }}
@@ -207,7 +207,6 @@ export default function Activites() {
               >
                 {t("activites.hero.description")}
               </motion.p>
-              
             </motion.div>
           </div>
         </section>
@@ -219,8 +218,7 @@ export default function Activites() {
             staticActivities.filter((a) => a.visible).length === 0 ? (
               <div className="py-20 text-center">
                 <p className="text-lg" style={{ color: "#667085" }}>
-                  {t("activites.empty")} 
-                  
+                  {t("activites.empty")}
                 </p>
               </div>
             ) : (
@@ -229,7 +227,7 @@ export default function Activites() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-80px" }}
-                className="grid gap-8 md:grid-cols-2"
+                className="grid gap-8 lg:grid-cols-2"
               >
                 {/* Une carte par session de la Séance Entrepreneuriale */}
                 {seances.filter((s) => s.visible).map((seance) => {
@@ -243,7 +241,7 @@ export default function Activites() {
                       statusBg={status.bg}
                       statusText={status.text}
                       title={t("activites.seanceEntrepreneuriale.title")}
-                      description={t("activites.seanceEntrepreneuriale.description")+" "+t("activites.seanceEntrepreneuriale.kit")}
+                      description={t("activites.seanceEntrepreneuriale.description")}
                       discoverLabel={t("activites.discover")}
                       infoRows={[
                         { icon: Calendar, text: seance.date },

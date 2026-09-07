@@ -73,8 +73,8 @@ export default function BureautiqueEssentielle() {
   };
 
   const programme = [
-    { n: "1", title: t("BureautiqueEssentielle.programme.week1.title"), text: t("BureautiqueEssentielle.programme.week1.text"), icon: FileSpreadsheet },
-    { n: "2", title: t("BureautiqueEssentielle.programme.week2.title"), text: t("BureautiqueEssentielle.programme.week2.text"), icon: Mail },
+    { n: "1", title: t("BureautiqueEssentielle.programme.week1.title"), text: t("BureautiqueEssentielle.programme.week1.text"), icon: Mail },
+    { n: "2", title: t("BureautiqueEssentielle.programme.week2.title"), text: t("BureautiqueEssentielle.programme.week2.text"), icon: FileSpreadsheet },
     { n: "3", title: t("BureautiqueEssentielle.programme.week3.title"), text: t("BureautiqueEssentielle.programme.week3.text"), icon: FolderOpen },
     { n: "4", title: t("BureautiqueEssentielle.programme.week4.title"), text: t("BureautiqueEssentielle.programme.week4.text"), icon: Presentation },
   ];
@@ -157,7 +157,7 @@ export default function BureautiqueEssentielle() {
                   className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em]"
                   style={{ color: "#EAB12D", fontFamily: "IBM Plex Mono, monospace" }}
                 >
-                  <span className="inline-block h-px w-6" style={{ backgroundColor: "#EAB12D" }} />
+                  {/* <span className="inline-block h-px w-6" style={{ backgroundColor: "#EAB12D" }} /> */}
                   {t("BureautiqueEssentielle.hero.eyebrow")}
                 </motion.div>
 
