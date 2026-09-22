@@ -1,5 +1,102 @@
 [
   {
+    "id": "2026-10-08",
+    "date": "08 Octobre 2026",
+    "lieu": "MP GROUP, Womey, 4ème rue à gauche, après  le CEG Plateau",
+    "etat": "en_cours", 
+    "heure": "10h30 - 13h30",
+    "places_disponibles": 20,
+    "places_totales": 20,
+    "lien_inscription": "https://marveen-promise.mymaketou.shop/fr/products/soutenir-mpbrioche/checkout",
+    "visible": true,
+    "objet_pratique": "Cahier, stylo",
+    "titre": "BRANDING DE MARQUE, IMAGE & STORYTELLING",
+    "sous_titre": "",
+    "accroche": "Le minimum à avoir pour s'affirmer.",
+    "programme": [
+      "Branding de marque",
+      "Branding d'image",
+      "Storytelling",
+      "Positionnement",
+      "Identité et visibilité"
+    ],
+    "avantages_titre": "POURQUOI TRAVAILLER SON BRANDING ?",
+    "avantages": [
+      {
+        "numero": "01",
+        "titre": "ÊTRE RECONNU",
+        "texte": "Créer une identité facilement identifiable."
+      },
+      {
+        "numero": "02",
+        "titre": "SE DIFFÉRENCIER",
+        "texte": "Sortir du lot dans un marché concurrentiel."
+      },
+      {
+        "numero": "03",
+        "titre": "INSPIRER CONFIANCE",
+        "texte": "Présenter une image cohérente et professionnelle."
+      },
+      {
+        "numero": "04",
+        "titre": "ÊTRE MÉMORISÉ",
+        "texte": "Créer une marque qui reste dans l'esprit."
+      },
+      {
+        "numero": "05",
+        "titre": "CRÉER DE LA VALEUR",
+        "texte": "Faire percevoir la valeur au-delà du produit ou service."
+      }
+    ],
+    "ce_que_c_est": {
+      "eyebrow": "Ce que c'est",
+      "titre": "Une séance pour construire ta marque",
+      "sous_titre": "3 heures pour poser les bases concrètes de ton branding, de ton image et de ton storytelling.",
+      "description1": "Cette séance entrepreneuriale est un atelier pratique consacré au branding de marque, à l'image et au storytelling. L'objectif : donner aux participants le minimum indispensable pour s'affirmer face à leur marché.",
+      "description2": "Tu repars avec une méthode claire pour construire une identité reconnaissable, un positionnement clair et un récit de marque qui inspire confiance.",
+      "highlight_titre": "Un atelier concret, pas une simple conférence",
+      "highlight_texte": "Chaque participant travaille sur son propre projet pendant la séance, avec un accompagnement direct."
+    },
+    "pour_qui": {
+      "eyebrow": "Pour qui",
+      "titre": "Cette séance est faite pour toi si...",
+      "items": [
+        "Tu es entrepreneur(e) ou porteur(se) de projet",
+        "Tu as une activité mais pas encore d'image claire",
+        "Tu veux te différencier dans un marché concurrentiel",
+        "Tu as une idée mais tu ne sais pas comment la présenter"
+      ]
+    },
+    "a_la_fin": {
+      "eyebrow": "À la fin des 3 heures",
+      "titre": "Ce que tu repars avec",
+      "description": "Une base concrète pour construire et communiquer ta marque dès la sortie de la séance.",
+      "items": [
+        {
+          "numero": "01",
+          "titre": "Une identité de marque claire",
+          "texte": "Les bases de ton branding de marque et de ton branding d'image, prêtes à être utilisées."
+        },
+        {
+          "numero": "02",
+          "titre": "Un positionnement affirmé",
+          "texte": "Une manière claire de te différencier et d'être reconnu sur ton marché."
+        },
+        {
+          "numero": "03",
+          "titre": "Un storytelling structuré",
+          "texte": "Un récit de marque cohérent pour inspirer confiance et rester mémorable."
+        }
+      ]
+    },
+    "pourquoi_maintenant": {
+      "eyebrow": "Pourquoi maintenant ?",
+      "titre": "Ton image se construit avec ou sans toi",
+      "description": "Sans branding clair, ton marché retient une image floue ou incohérente de ton activité. Plus tu attends, plus il est difficile de corriger cette perception.",
+      "highlight": "Le bon moment pour construire ta marque, c'est maintenant."
+    }
+  },
+  {
     "id": "2026-09-09",
     "date": "9 Septembre 2026",
     "lieu": "MP GROUP, Womey, 4ème rue à gauche, après  le CEG Plateau",
@@ -23,6 +120,5 @@
     "visible": true,
     "objet_pratique": "Cahier, stylo"
   }
+
 ]
-
-

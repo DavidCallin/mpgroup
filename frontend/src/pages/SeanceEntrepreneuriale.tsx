@@ -29,6 +29,52 @@ interface Seance {
   lien_inscription: string;
   visible: boolean;
   objet_pratique: string;
+  // Champs optionnels : contenu propre à l'affiche officielle de la séance.
+  // S'ils sont absents du JSON, le composant retombe sur les textes de traduction par défaut.
+  titre?: string;
+  sous_titre?: string;
+  accroche?: string;
+  programme?: string[];
+  avantages_titre?: string;
+  avantages?: {
+    numero: string;
+    titre: string;
+    texte: string;
+  }[];
+  // "Ce que c'est"
+  ce_que_c_est?: {
+    eyebrow?: string;
+    titre?: string;
+    sous_titre?: string;
+    description1?: string;
+    description2?: string;
+    highlight_titre?: string;
+    highlight_texte?: string;
+  };
+  // "Pour qui"
+  pour_qui?: {
+    eyebrow?: string;
+    titre?: string;
+    items?: string[];
+  };
+  // "À la fin des 3 heures"
+  a_la_fin?: {
+    eyebrow?: string;
+    titre?: string;
+    description?: string;
+    items?: {
+      numero: string;
+      titre: string;
+      texte: string;
+    }[];
+  };
+  // "Pourquoi maintenant ?"
+  pourquoi_maintenant?: {
+    eyebrow?: string;
+    titre?: string;
+    description?: string;
+    highlight?: string;
+  };
 }
 
 const seances = seancesData as Seance[];
@@ -357,30 +403,36 @@ export default function SeanceEntrepreneuriale() {
     },
   ];
 
-  const audience = [
+  const audience = seance.pour_qui?.items ?? [
     t("seanceEntrepreneuriale.audience.entrepreneurs"),
     t("seanceEntrepreneuriale.audience.active"),
     t("seanceEntrepreneuriale.audience.project"),
     t("seanceEntrepreneuriale.audience.idea"),
   ];
 
-  const results = [
-    {
-      number: "01",
-      title: t("seanceEntrepreneuriale.results.idea.title"),
-      text: t("seanceEntrepreneuriale.results.idea.text"),
-    },
-    {
-      number: "02",
-      title: t("seanceEntrepreneuriale.results.market.title"),
-      text: t("seanceEntrepreneuriale.results.market.text"),
-    },
-    {
-      number: "03",
-      title: t("seanceEntrepreneuriale.results.plan.title"),
-      text: t("seanceEntrepreneuriale.results.plan.text"),
-    },
-  ];
+  const results = seance.a_la_fin?.items
+    ? seance.a_la_fin.items.map((item) => ({
+        number: item.numero,
+        title: item.titre,
+        text: item.texte,
+      }))
+    : [
+        {
+          number: "01",
+          title: t("seanceEntrepreneuriale.results.idea.title"),
+          text: t("seanceEntrepreneuriale.results.idea.text"),
+        },
+        {
+          number: "02",
+          title: t("seanceEntrepreneuriale.results.market.title"),
+          text: t("seanceEntrepreneuriale.results.market.text"),
+        },
+        {
+          number: "03",
+          title: t("seanceEntrepreneuriale.results.plan.title"),
+          text: t("seanceEntrepreneuriale.results.plan.text"),
+        },
+      ];
 
   return (
     <>
@@ -427,35 +479,51 @@ export default function SeanceEntrepreneuriale() {
 
                 <motion.h1
                   variants={fadeUp}
-                  className="mt-8 text-6xl font-bold leading-[0.9] tracking-[-0.04em] md:text-8xl lg:text-[9rem]"
+                  className="mt-8 text-xl font-bold leading-[0.9] tracking-[-0.04em] md:text-5xl lg:text-[6rem]"
                   style={{
                     fontFamily: "var(--font-heading)",
                     color: "#FFFFFF",
                   }}
                 >
-                  {t("seanceEntrepreneuriale.hero.title1")}
-                  <br />
-                  <span style={{ color: "#EAB12D" }}>{t("seanceEntrepreneuriale.hero.title2")}</span>
+                  {seance.titre ?? t("seanceEntrepreneuriale.hero.title1")}
+                  {!seance.titre && (
+                    <>
+                      <br />
+                      {/* <span style={{ color: "#EAB12D" }}>{t("seanceEntrepreneuriale.hero.title2")}</span> */}
+                    </>
+                  )}
                 </motion.h1>
 
-                <motion.p
-                  variants={fadeUp}
-                  className="mt-6 text-xl font-semibold md:text-2xl"
-                  style={{
-                    color: "#FFFFFF",
-                    fontFamily: "var(--font-heading)",
-                  }}
-                >
-                  {t("seanceEntrepreneuriale.hero.subtitle")}
-                </motion.p>
+                {(seance.sous_titre ?? t("seanceEntrepreneuriale.hero.subtitle")) && (
+                  <motion.p
+                    variants={fadeUp}
+                    className="mt-6 text-xl font-semibold md:text-2xl"
+                    style={{
+                      color: "#EAB12D",
+                      fontFamily: "var(--font-heading)",
+                    }}
+                  >
+                    {seance.sous_titre ?? t("seanceEntrepreneuriale.hero.subtitle")}
+                  </motion.p>
+                )}
 
-                <motion.p
+                {seance.accroche && (
+                  <motion.p
+                    variants={fadeUp}
+                    className="mt-3 text-lg font-medium italic"
+                    style={{ color: "rgba(255,255,255,0.85)" }}
+                  >
+                    {seance.accroche}
+                  </motion.p>
+                )}
+
+                {/* <motion.p
                   variants={fadeUp}
                   className="mt-6 max-w-2xl text-base leading-8 md:text-lg"
                   style={{ color: "rgba(255,255,255,0.72)" }}
                 >
                   {t("seanceEntrepreneuriale.hero.description")}
-                </motion.p>
+                </motion.p> */}
 
                 <motion.div variants={fadeUp} className="mt-8">
                   <SoldOutNotice seance={seance} />
@@ -546,7 +614,7 @@ export default function SeanceEntrepreneuriale() {
                         color: "rgba(255,255,255,0.65)",
                       }}
                     >
-                      {t("seanceEntrepreneuriale.hero.description")}
+                      {seance.accroche}
                     </p>
                   </div>
                 </div>
@@ -575,6 +643,51 @@ export default function SeanceEntrepreneuriale() {
         </section>
 
         {/* =========================
+            AU PROGRAMME (contenu propre à la séance, depuis le JSON)
+        ========================= */}
+
+        {seance.programme && seance.programme.length > 0 && (
+          <section className="py-24 md:py-32" style={{ backgroundColor: "#F6F7F9" }}>
+            <div className="container mx-auto px-6 md:px-10 lg:px-16">
+              <SectionTitle
+                eyebrow="Au programme"
+                title={seance.sous_titre ?? "Ce que tu vas apprendre"}
+              />
+
+              <motion.div
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="mt-14 grid gap-4 sm:grid-cols-2"
+              >
+                {seance.programme.map((item) => (
+                  <motion.div
+                    key={item}
+                    variants={fadeUp}
+                    className="flex items-center gap-4 border bg-white p-5"
+                    style={{ borderColor: "rgba(0,26,77,0.12)" }}
+                  >
+                    <span
+                      className="flex h-9 w-9 shrink-0 items-center justify-center"
+                      style={{ backgroundColor: "#EAB12D", color: "#001A4D" }}
+                    >
+                      <Check size={18} strokeWidth={3} />
+                    </span>
+                    <span
+                      className="text-base font-semibold"
+                      style={{ color: "#001A4D" }}
+                    >
+                      {item}
+                    </span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+        )}
+
+        {/* =========================
             CE QUE C'EST
         ========================= */}
 
@@ -583,9 +696,9 @@ export default function SeanceEntrepreneuriale() {
             <div className="grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
 
               <SectionTitle
-                eyebrow={t("seanceEntrepreneuriale.about.eyebrow")}
-                title={t("seanceEntrepreneuriale.about.title")}
-                description={t("seanceEntrepreneuriale.about.subtitle")}
+                eyebrow={seance.ce_que_c_est?.eyebrow ?? t("seanceEntrepreneuriale.about.eyebrow")}
+                title={seance.ce_que_c_est?.titre ?? t("seanceEntrepreneuriale.about.title")}
+                description={seance.ce_que_c_est?.sous_titre ?? t("seanceEntrepreneuriale.about.subtitle")}
               />
 
               <motion.div
@@ -596,10 +709,10 @@ export default function SeanceEntrepreneuriale() {
                 className="text-lg leading-9"
                 style={{ color: "#4B5563" }}
               >
-                <p>{t("seanceEntrepreneuriale.about.description1")}</p>
+                <p>{seance.ce_que_c_est?.description1 ?? t("seanceEntrepreneuriale.about.description1")}</p>
 
                 <p className="mt-7">
-                  {t("seanceEntrepreneuriale.about.description2")}
+                  {seance.ce_que_c_est?.description2 ?? t("seanceEntrepreneuriale.about.description2")}
                 </p>
 
                 <div
@@ -613,11 +726,11 @@ export default function SeanceEntrepreneuriale() {
                       fontFamily: "var(--font-heading)",
                     }}
                   >
-                    {t("seanceEntrepreneuriale.about.highlight.title")}
+                    {seance.ce_que_c_est?.highlight_titre ?? t("seanceEntrepreneuriale.about.highlight.title")}
                   </p>
 
                   <p className="mt-3 text-base leading-7">
-                    {t("seanceEntrepreneuriale.about.highlight.text")}
+                    {seance.ce_que_c_est?.highlight_texte ?? t("seanceEntrepreneuriale.about.highlight.text")}
                   </p>
                 </div>
               </motion.div>
@@ -637,8 +750,8 @@ export default function SeanceEntrepreneuriale() {
 
             <SectionTitle
               eyebrow={t("seanceEntrepreneuriale.why.eyebrow")}
-              title={t("seanceEntrepreneuriale.why.title")}
-              description={t("seanceEntrepreneuriale.why.description")}
+              title={seance.avantages_titre ?? t("seanceEntrepreneuriale.why.title")}
+              description={seance.avantages ? undefined : t("seanceEntrepreneuriale.why.description")}
             />
 
             <motion.div
@@ -648,61 +761,103 @@ export default function SeanceEntrepreneuriale() {
               viewport={{ once: true }}
               className="mt-16 grid gap-px bg-[#001A4D]/10 md:grid-cols-2"
             >
-              {features.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <motion.div
-                    key={item.number}
-                    variants={fadeUp}
-                    className="group bg-white p-8 md:p-10 lg:p-12"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div
-                        className="flex h-12 w-12 items-center justify-center"
-                        style={{
-                          backgroundColor: "#001A4D",
-                          color: "#EAB12D",
-                        }}
-                      >
-                        <Icon size={21} />
+              {seance.avantages
+                ? seance.avantages.map((item) => (
+                    <motion.div
+                      key={item.numero}
+                      variants={fadeUp}
+                      className="group bg-white p-8 md:p-10 lg:p-12"
+                    >
+                      <div className="flex items-start justify-between">
+                        <span
+                          className="text-5xl font-bold opacity-10"
+                          style={{
+                            color: "#001A4D",
+                            fontFamily: "var(--font-heading)",
+                          }}
+                        >
+                          {item.numero}
+                        </span>
                       </div>
 
-                      <span
-                        className="text-5xl font-bold opacity-10"
+                      <h3
+                        className="mt-8 text-2xl font-bold"
                         style={{
                           color: "#001A4D",
                           fontFamily: "var(--font-heading)",
                         }}
                       >
-                        {item.number}
-                      </span>
-                    </div>
+                        {item.titre}
+                      </h3>
 
-                    <h3
-                      className="mt-8 text-2xl font-bold"
-                      style={{
-                        color: "#001A4D",
-                        fontFamily: "var(--font-heading)",
-                      }}
-                    >
-                      {item.title}
-                    </h3>
+                      <p
+                        className="mt-5 leading-8"
+                        style={{ color: "#667085" }}
+                      >
+                        {item.texte}
+                      </p>
 
-                    <p
-                      className="mt-5 leading-8"
-                      style={{ color: "#667085" }}
-                    >
-                      {item.text}
-                    </p>
+                      <div
+                        className="mt-8 h-px w-10 transition-all duration-500 group-hover:w-20"
+                        style={{ backgroundColor: "#EAB12D" }}
+                      />
+                    </motion.div>
+                  ))
+                : features.map((item) => {
+                    const Icon = item.icon;
 
-                    <div
-                      className="mt-8 h-px w-10 transition-all duration-500 group-hover:w-20"
-                      style={{ backgroundColor: "#EAB12D" }}
-                    />
-                  </motion.div>
-                );
-              })}
+                    return (
+                      <motion.div
+                        key={item.number}
+                        variants={fadeUp}
+                        className="group bg-white p-8 md:p-10 lg:p-12"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div
+                            className="flex h-12 w-12 items-center justify-center"
+                            style={{
+                              backgroundColor: "#001A4D",
+                              color: "#EAB12D",
+                            }}
+                          >
+                            <Icon size={21} />
+                          </div>
+
+                          <span
+                            className="text-5xl font-bold opacity-10"
+                            style={{
+                              color: "#001A4D",
+                              fontFamily: "var(--font-heading)",
+                            }}
+                          >
+                            {item.number}
+                          </span>
+                        </div>
+
+                        <h3
+                          className="mt-8 text-2xl font-bold"
+                          style={{
+                            color: "#001A4D",
+                            fontFamily: "var(--font-heading)",
+                          }}
+                        >
+                          {item.title}
+                        </h3>
+
+                        <p
+                          className="mt-5 leading-8"
+                          style={{ color: "#667085" }}
+                        >
+                          {item.text}
+                        </p>
+
+                        <div
+                          className="mt-8 h-px w-10 transition-all duration-500 group-hover:w-20"
+                          style={{ backgroundColor: "#EAB12D" }}
+                        />
+                      </motion.div>
+                    );
+                  })}
             </motion.div>
             <center>
                 <motion.div variants={fadeUp} className="mt-10">
@@ -727,8 +882,8 @@ export default function SeanceEntrepreneuriale() {
             <div className="grid items-center gap-16 lg:grid-cols-2">
 
               <SectionTitle
-                eyebrow={t("seanceEntrepreneuriale.audience.eyebrow")}
-                title={t("seanceEntrepreneuriale.audience.title")}
+                eyebrow={seance.pour_qui?.eyebrow ?? t("seanceEntrepreneuriale.audience.eyebrow")}
+                title={seance.pour_qui?.titre ?? t("seanceEntrepreneuriale.audience.title")}
                 light
               />
 
@@ -777,9 +932,9 @@ export default function SeanceEntrepreneuriale() {
           <div className="container mx-auto px-6 md:px-10 lg:px-16">
 
             <SectionTitle
-              eyebrow={t("seanceEntrepreneuriale.results.eyebrow")}
-              title={t("seanceEntrepreneuriale.results.title")}
-              description={t("seanceEntrepreneuriale.results.description")}
+              eyebrow={seance.a_la_fin?.eyebrow ?? t("seanceEntrepreneuriale.results.eyebrow")}
+              title={seance.a_la_fin?.titre ?? t("seanceEntrepreneuriale.results.title")}
+              description={seance.a_la_fin?.description ?? t("seanceEntrepreneuriale.results.description")}
             />
 
             <motion.div
@@ -857,7 +1012,7 @@ export default function SeanceEntrepreneuriale() {
                   className="text-xs font-bold uppercase tracking-[0.25em]"
                   style={{ color: "#EAB12D" }}
                 >
-                  {t("seanceEntrepreneuriale.whyNow.eyebrow")}
+                  {seance.pourquoi_maintenant?.eyebrow ?? t("seanceEntrepreneuriale.whyNow.eyebrow")}
                 </span>
 
                 <h2
@@ -867,14 +1022,14 @@ export default function SeanceEntrepreneuriale() {
                     fontFamily: "var(--font-heading)",
                   }}
                 >
-                  {t("seanceEntrepreneuriale.whyNow.title")}
+                  {seance.pourquoi_maintenant?.titre ?? t("seanceEntrepreneuriale.whyNow.title")}
                 </h2>
 
                 <p
                   className="mx-auto mt-8 max-w-2xl text-lg leading-9"
                   style={{ color: "#667085" }}
                 >
-                  {t("seanceEntrepreneuriale.whyNow.description")}
+                  {seance.pourquoi_maintenant?.description ?? t("seanceEntrepreneuriale.whyNow.description")}
                 </p>
 
                 <p
@@ -884,7 +1039,7 @@ export default function SeanceEntrepreneuriale() {
                     fontFamily: "var(--font-heading)",
                   }}
                 >
-                  {t("seanceEntrepreneuriale.whyNow.highlight")}
+                  {seance.pourquoi_maintenant?.highlight ?? t("seanceEntrepreneuriale.whyNow.highlight")}
                 </p>
               </motion.div>
 
