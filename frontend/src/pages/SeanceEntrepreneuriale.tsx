@@ -738,22 +738,22 @@ export default function SeanceEntrepreneuriale() {
           </div>
         </section>
 
-        {/* =========================
+                {/* =========================
             POURQUOI
         ========================= */}
-
+ 
         <section
           className="py-24 md:py-32"
           style={{ backgroundColor: "#F6F7F9" }}
         >
           <div className="container mx-auto px-6 md:px-10 lg:px-16">
-
+ 
             <SectionTitle
               eyebrow={t("seanceEntrepreneuriale.why.eyebrow")}
               title={seance.avantages_titre ?? t("seanceEntrepreneuriale.why.title")}
               description={seance.avantages ? undefined : t("seanceEntrepreneuriale.why.description")}
             />
-
+ 
             <motion.div
               variants={stagger}
               initial="hidden"
@@ -762,11 +762,16 @@ export default function SeanceEntrepreneuriale() {
               className="mt-16 grid gap-px bg-[#001A4D]/10 md:grid-cols-2"
             >
               {seance.avantages
-                ? seance.avantages.map((item) => (
+                ? seance.avantages.map((item, index) => (
                     <motion.div
                       key={item.numero}
                       variants={fadeUp}
-                      className="group bg-white p-8 md:p-10 lg:p-12"
+                      className={`group bg-white p-8 md:p-10 lg:p-12 ${
+                        seance.avantages!.length % 2 === 1 &&
+                        index === seance.avantages!.length - 1
+                          ? "md:col-span-2"
+                          : ""
+                      }`}
                     >
                       <div className="flex items-start justify-between">
                         <span
@@ -779,7 +784,7 @@ export default function SeanceEntrepreneuriale() {
                           {item.numero}
                         </span>
                       </div>
-
+ 
                       <h3
                         className="mt-8 text-2xl font-bold"
                         style={{
@@ -789,28 +794,33 @@ export default function SeanceEntrepreneuriale() {
                       >
                         {item.titre}
                       </h3>
-
+ 
                       <p
                         className="mt-5 leading-8"
                         style={{ color: "#667085" }}
                       >
                         {item.texte}
                       </p>
-
+ 
                       <div
                         className="mt-8 h-px w-10 transition-all duration-500 group-hover:w-20"
                         style={{ backgroundColor: "#EAB12D" }}
                       />
                     </motion.div>
                   ))
-                : features.map((item) => {
+                : features.map((item, index) => {
                     const Icon = item.icon;
-
+ 
                     return (
                       <motion.div
                         key={item.number}
                         variants={fadeUp}
-                        className="group bg-white p-8 md:p-10 lg:p-12"
+                        className={`group bg-white p-8 md:p-10 lg:p-12 ${
+                          features.length % 2 === 1 &&
+                          index === features.length - 1
+                            ? "md:col-span-2"
+                            : ""
+                        }`}
                       >
                         <div className="flex items-start justify-between">
                           <div
@@ -822,7 +832,7 @@ export default function SeanceEntrepreneuriale() {
                           >
                             <Icon size={21} />
                           </div>
-
+ 
                           <span
                             className="text-5xl font-bold opacity-10"
                             style={{
@@ -833,7 +843,7 @@ export default function SeanceEntrepreneuriale() {
                             {item.number}
                           </span>
                         </div>
-
+ 
                         <h3
                           className="mt-8 text-2xl font-bold"
                           style={{
@@ -843,14 +853,14 @@ export default function SeanceEntrepreneuriale() {
                         >
                           {item.title}
                         </h3>
-
+ 
                         <p
                           className="mt-5 leading-8"
                           style={{ color: "#667085" }}
                         >
                           {item.text}
                         </p>
-
+ 
                         <div
                           className="mt-8 h-px w-10 transition-all duration-500 group-hover:w-20"
                           style={{ backgroundColor: "#EAB12D" }}
