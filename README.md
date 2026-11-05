@@ -317,7 +317,7 @@ La direction artistique repose sur une identité institutionnelle et premium.
 ### 1. Cloner le projet
 
 ```bash
-git clone <URL_DU_DEPOT>
+git clone git@github.com:DavidCallin/mpgroup.git
 cd mpgroup
 ```
 
