@@ -1,4 +1,4 @@
-# 🏢 MP GROUP - Plateforme Web Institutionnelle
+# MP GROUP - Plateforme Web Institutionnelle
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat-square&logo=typescript&logoColor=white)
@@ -12,11 +12,11 @@
 
 La plateforme offre une expérience digitale moderne, bilingue et responsive, avec un espace d'administration permettant de gérer les actualités, les messages de contact et les demandes de devis.
 
-🌐 **Site web :** https://mpgroupcompany.com/
+ **Site web :** https://mpgroupcompany.com/
 
 ---
 
-## 📸 Présentation du projet
+## Présentation du projet
 
 MP GROUP accompagne les institutions, les entreprises, les dirigeants et les personnalités dans l'organisation et la coordination d'événements à forte portée institutionnelle.
 
@@ -39,7 +39,7 @@ La plateforme a pour objectif de renforcer sa présence digitale, valoriser ses 
 
 ---
 
-## 🛠️ Stack technique
+##  Stack technique
 
 Le projet repose sur une architecture Full Stack séparant le frontend et le backend afin de faciliter la maintenance, l'évolution et la réutilisation des services.
 
@@ -77,7 +77,7 @@ Le projet repose sur une architecture Full Stack séparant le frontend et le bac
 
 ---
 
-## 🏗️ Architecture du projet
+## Architecture du projet
 
 Le projet est organisé en deux applications indépendantes qui communiquent à travers une API REST.
 
@@ -128,7 +128,7 @@ mpgroup/
 
 ---
 
-## 🌍 Internationalisation (FR / EN)
+## Internationalisation (FR / EN)
 
 La plateforme intègre un système de traduction permettant aux visiteurs de naviguer entre deux langues :
 
@@ -155,7 +155,7 @@ Les traductions sont centralisées dans un objet organisé par langue et par sec
 
 ---
 
-## 🔐 Authentification et espace d'administration
+## Authentification et espace d'administration
 
 L'application dispose d'un espace d'administration permettant de gérer les contenus et les interactions avec les visiteurs.
 
@@ -177,7 +177,7 @@ Les requêtes authentifiées utilisent un token Bearer transmis dans l'en-tête 
 
 ---
 
-## 📩 Gestion des formulaires et des demandes
+## Gestion des formulaires et des demandes
 
 ### Formulaire de contact
 
@@ -211,7 +211,7 @@ Les demandes sont ensuite accessibles depuis l'espace d'administration.
 
 ---
 
-## 📰 Gestion des actualités
+## Gestion des actualités
 
 La plateforme dispose d'un module de gestion éditoriale permettant à l'équipe d'administration de publier et de gérer les actualités du groupe.
 
@@ -226,7 +226,7 @@ Fonctionnalités :
 
 ---
 
-## 🔌 API REST
+## API REST
 
 Le backend Laravel expose une API REST consommée par l'application React.
 
@@ -275,7 +275,7 @@ Le backend Laravel expose une API REST consommée par l'application React.
 
 ---
 
-## 🔎 SEO et performances
+## SEO et performances
 
 Le projet intègre plusieurs mécanismes destinés à améliorer sa visibilité et son expérience utilisateur.
 
@@ -290,7 +290,7 @@ Le projet intègre plusieurs mécanismes destinés à améliorer sa visibilité 
 
 ---
 
-## 🎨 Identité visuelle
+## Identité visuelle
 
 La direction artistique repose sur une identité institutionnelle et premium.
 
@@ -304,7 +304,7 @@ La direction artistique repose sur une identité institutionnelle et premium.
 
 ---
 
-## ⚙️ Installation et configuration
+## Installation et configuration
 
 ### Prérequis
 
@@ -386,7 +386,7 @@ npm run build
 
 ---
 
-## 🚀 Déploiement
+## Déploiement
 
 Le projet utilise une architecture de déploiement séparée :
 
@@ -401,7 +401,7 @@ Le frontend communique avec le backend à travers la variable d'environnement `V
 
 ---
 
-## 👨‍💻 Développement
+## Développement
 
 **Conception et développement : Callin HOUNGA**
 
@@ -420,7 +420,7 @@ Ce projet illustre la mise en œuvre d'une solution web Full Stack intégrant un
 
 ---
 
-## 📄 Licence
+## Licence
 
 Tous droits réservés à MP GROUP et aux détenteurs respectifs des éléments du projet.
 
