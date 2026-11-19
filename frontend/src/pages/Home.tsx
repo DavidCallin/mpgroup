@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { SEO } from '@/components/SEO'
 import { SchemaOrg } from '@/components/SchemaOrg'
 import AvisWidget from '@/components/ui/AvisWidget'
+import { PartnersSection } from '@/components/PartnersSection'
 import heroImage from '@/assets/pexels-am83-14636315.webp'
 import promiseImage from '@/assets/pexels-bertellifotografia-16120243.webp'
 import { useQuery } from '@tanstack/react-query'
@@ -251,6 +252,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Partners Section */}
+      <PartnersSection />
 
       {/* Avis Section */}
       <section className="py-8 px-4 sm:px-6 bg-primary text-white">

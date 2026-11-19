@@ -61,6 +61,8 @@ const translations = {
     'vision.title': 'Construire les événements qui structurent l\'avenir.',
     'vision.description': 'MP Group ambitionne de devenir un acteur de référence en Afrique de l\'Ouest dans la conception et la coordination d\'événements stratégiques.',
     'vision.goal': 'Notre objectif : structurer des initiatives capables de renforcer les organisations, les leaders et les écosystèmes.',
+    'partners.tagline': 'Ils nous font confiance',
+    'partners.title': 'Nos partenaires',
 
     // Home CTA
     'home.cta.title': 'Vous préparez un événement stratégique ?',
@@ -624,6 +626,8 @@ const translations = {
     'vision.title': 'Building the events that structure the future.',
     'vision.description': 'MP Group aims to become a reference player in West Africa in the design and coordination of strategic events.',
     'vision.goal': 'Our goal: structure initiatives capable of strengthening organizations, leaders and ecosystems.',
+    'partners.tagline': 'They trust us',
+    'partners.title': 'Our partners',
 
     // Home CTA
     'home.cta.title': 'Are you preparing a strategic event?',
